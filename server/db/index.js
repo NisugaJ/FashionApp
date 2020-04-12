@@ -1,9 +1,13 @@
 const mongoose = require('mongoose')
+const { dbconfig } = require('../config.js')
 
 mongoose
-    .connect('mongodb://127.0.0.1:27017/fashionstore', { useNewUrlParser: true , useUnifiedTopology: true})
+    .connect(dbconfig.connectionString, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
     .catch(e => {
-        console.error('Connection error', e.message)
+        console.error('DB Connection error', e.message)
     })
 
 const db = mongoose.connection

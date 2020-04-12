@@ -14,6 +14,9 @@ app.get('/', (req, res) => {
     res.send("Fashion Store Service Backend!")
 })
 
+//For Accessing Static Resources
+app.use(express.static('./public'));
+
 app.use('/api', apiRouter)
 
 app.listen(apiPort, () => {
