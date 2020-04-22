@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 app.use(express.static('./public'));
 
 app.use('/api', apiRouter)
+//test
 
 app.listen(apiPort, () => {
     console.log(`Express Server is running on port ${apiPort} `);
