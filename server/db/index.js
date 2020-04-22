@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
-const { dbconfig } = require('../config.js')
+const {
+    dbconfig
+} = require('../config.js')
 
 mongoose
     .connect(dbconfig.connectionString, {
