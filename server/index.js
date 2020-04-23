@@ -4,10 +4,11 @@ const cors = require('cors')
 const app = express()
 const apiPort = 3000
 const db = require('./db')
-const userRoutes = require('./routes/user.route')
 
+const userRoutes = require('./routes/user.route')
 const contactRoutes = require("./routes/contact.route");
 const paymentRoutes = require("./routes/payment.route");
+const productRoutes = require("./routes/product.route");
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -25,6 +26,7 @@ app.use(express.static('./public'));
 app.use('/user', userRoutes)
 app.use("/contact", contactRoutes);
 app.use("/payment", paymentRoutes);
+app.use("/product", productRoutes);
 
 app.listen(apiPort, () => {
     console.log(`Express Server is running on port ${apiPort} `);
