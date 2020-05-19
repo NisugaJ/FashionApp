@@ -1,7 +1,8 @@
 import axios from 'axios'
+import backend_config from '../config/backend_config'
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: backend_config.baseURL,
 })
 
 export const createUser = payload => api.post(`/user/create`, payload)

@@ -13,7 +13,6 @@ import DateFnsUtils from "@date-io/date-fns"
 import LandingPage from "./landing_page/LandingPage"
 import AdminDashboard from './main_components/admin/AdminMain';
 import NoMatch from './components/NotFound_404';
-import Chart from "./main_components/admin/Chart"
 import StoreManagerDashboard from "./main_components/StoreManager/StoreManager"
 import CustomerDashboard from "./main_components/Customer/Customer"
 
@@ -78,13 +77,20 @@ let App = () => {
                     <LandingPage />
                   </Route>
                   <PrivateRoute path="/dashboard">
-                    <InnerWrapper>
-                      {currrentUserType === 'ADMIN' ? <AdminDashboard />
-                        : currrentUserType === 'STORE_MANAGER' ? <StoreManagerDashboard />
-                          : currrentUserType === 'CUSTOMER' ? <CustomerDashboard />
-                            : <NoMatch />
-                      }
-                    </InnerWrapper>
+                    {currrentUserType === 'ADMIN' ? <AdminDashboard />
+                      : currrentUserType === 'STORE_MANAGER' ?
+                        <InnerWrapper>
+                          <StoreManagerDashboard />
+                        </InnerWrapper>
+                        : currrentUserType === 'CUSTOMER' ?
+                          <InnerWrapper>
+                            <CustomerDashboard />
+                          </InnerWrapper>
+                          :
+                          <InnerWrapper>
+                            <NoMatch />
+                          </InnerWrapper>
+                    }
                   </PrivateRoute>
                   <Route path="/login">
                     <InnerWrapper>

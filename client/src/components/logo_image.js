@@ -5,7 +5,7 @@ import { MainOuterTheme } from "../styles/themes"
 const styles = {
   color: MainOuterTheme.palette.primary.main
 }
-const Image = ({ size }) => {
+const LogoImage = ({ size }) => {
   const cls = `fas fa-crown fa-${size}x`
   return (
     <i class={cls} style={styles} />
@@ -20,4 +20,4 @@ const Image = ({ size }) => {
   )
 }
 
-export default Image
+export default LogoImage
