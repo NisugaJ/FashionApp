@@ -6,7 +6,7 @@ export const whyUs = () => {
     <div id="whyUs">
       <div className="container">
         <h1>
-          <center>Why Us AF</center>
+          <center>Why Us</center>
         </h1>
         <br />
         <p>
