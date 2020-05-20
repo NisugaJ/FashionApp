@@ -5,6 +5,8 @@ import NavBtn from "./navBtn";
 import Content1 from "./content1";
 import Content2 from "./content2";
 import Contacts from "./contacts";
+import LogoImage from "../../components/logo_image";
+import { Button } from "@material-ui/core";
 
 class SideBar extends Component {
   constructor(props) {
@@ -24,7 +26,14 @@ class SideBar extends Component {
         <div id="admin">
           <div id="sideMenu">
             <section className="logo">
-              <i className="fas fa-crown fa-3x"></i>
+              <Button
+                color="inherit"
+                aria-label="logo"
+              >
+                <a href="/">
+                  <LogoImage size={3} />
+                </a>
+              </Button>
             </section>
             <h3 className="user">Admin</h3>
             <div className="navBtn">

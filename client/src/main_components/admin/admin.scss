@@ -1,6 +1,7 @@
 @import "../../styles/colors";
 
 #admin {
+  overflow-x: hidden;
   display: flex;
   flex-direction: row;
 }
@@ -30,8 +31,12 @@
     margin-top: 1rem;
   }
 
+  .user {
+    padding-bottom: 20px;
+  }
+
   .navBtn {
-    padding: 1rem;
+    // padding: 1rem;
     display: flex;
     flex-direction: column;
 
@@ -57,7 +62,7 @@ caption {
 #sideContent {
   width: 85%;
   padding: 4rem 4rem 0 4rem;
-  z-index: -1;
+  z-index: 1;
 }
 
 .delBtn,
@@ -92,6 +97,42 @@ caption {
   }
 }
 
+.table-grid {
+  border-collapse: collapse;
+  margin: 20px 5px 10px 5px;
+  thead tr {
+    height: flex;
+    height: 2rem;
+    border-bottom: 2px solid rgb(175, 172, 172);
+  }
+
+  tbody tr{
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    td{
+      // background-color: yellow;
+      padding: 0.7rem;
+    }
+  }
+}
+
+@media screen and (min-width:1280px) {
+  .table-grid {
+
+    thead tr {
+      height: flex;
+    }
+
+    tbody tr{
+
+      td{
+        // background-color: yellow;
+        padding: 0.7rem;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1280px) {
   #admin {
     flex-direction: column;
@@ -119,6 +160,22 @@ caption {
     margin-top: 50px;
     width: 100%;
     padding: 1rem;
+  }
+
+  
+  .table-grid {
+
+    thead tr {
+      height: flex;
+    }
+
+    tbody tr{
+
+      td{
+        // background-color: yellow;
+        padding: 0.7rem;
+      }
+    }
   }
 }
 
@@ -156,8 +213,9 @@ caption {
     }
   }
 
-  .contactTable {
+  .table-grid {
     display: flex;
+
 
     thead tr {
       position: absolute;
@@ -167,6 +225,7 @@ caption {
 
     tbody tr {
       display: flex;
+      
       flex-direction: column;
 
       td {

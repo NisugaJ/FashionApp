@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import TableRow from "./contactTableRow";
+import { Typography } from "@material-ui/core";
+import PureProgressSpinner from "../../components/PureProgressSpinner";
 
 class Contacts extends Component {
   constructor(props) {
@@ -18,14 +20,18 @@ class Contacts extends Component {
   }
   tabRow() {
     return this.state.contacts.map((object, i) => {
-      return <TableRow obj={object} key={i} />;
+      return <TableRow obj={object} key={i} allContacts={this.state.contacts} />;
     });
   }
   render() {
+    if (this.state.contacts.length === 0) {
+      return <PureProgressSpinner message="Loading Contacts..." />
+    }
+
     return (
       <React.Fragment>
-        <caption>Contact List</caption>
-        <table className="contactTable">
+        <Typography variant="h4" style={{ marginLeft: "10px" }}>Contact List</Typography>
+        <table className="table-grid">
           <thead>
             <tr>
               <th>E-Mail</th>

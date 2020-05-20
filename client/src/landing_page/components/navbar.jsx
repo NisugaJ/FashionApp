@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import NavButton from "./navbutton";
-import { useEffect, useState } from "react"
-import PeopleIcon from "@material-ui/icons/People"
+import { useState } from "react"
 
 import { BrowserRouter as Router, Switch, Route, Link, useParams, useRouteMatch } from "react-router-dom";
 
@@ -9,12 +8,10 @@ import Home from "./home";
 import About from "./about";
 import Contact from "./contact";
 import { isLogged } from "../../components/auth";
-import Buttonv2 from "../../components/button";
 import Image from "../../components/logo_image";
-import { Typography, Badge, IconButton, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import { ShoppingCartSharp, ShoppingCart } from "@material-ui/icons";
+import { Typography, Badge } from "@material-ui/core";
+import { ShoppingCart } from "@material-ui/icons";
 import NoMatch from "../../components/NotFound_404";
-import CommonLink from "../../components/CommonLink";
 
 function LandingPageSubPage() {
   let { subRouteID } = useParams()
@@ -38,7 +35,6 @@ function LandingPageSubPage() {
 
 const NavBar = () => {
   const [activeArray, setActiveArray] = useState([1, 0, 0, 0])
-  const [name, setName] = useState("")
 
   let { path, url } = useRouteMatch()
 
@@ -52,7 +48,6 @@ const NavBar = () => {
     var arr = [0, 0, 0, 0];
     arr[id] = 1;
     setActiveArray(arr)
-    setName(name)
   }
 
 
