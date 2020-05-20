@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import TableRow from "./contactTableRow";
-import backend_config from "../../config/backend_config";
-import { Typography } from "@material-ui/core";
 
 class Contacts extends Component {
   constructor(props) {
@@ -10,7 +8,7 @@ class Contacts extends Component {
     this.state = { contacts: [] };
   }
   componentDidMount() {
-    Axios.get(backend_config.baseURL + "contact/all")
+    Axios.get("http://localhost:3000/contact/all")
       .then((response) => {
         this.setState({ contacts: response.data });
       })
@@ -26,8 +24,8 @@ class Contacts extends Component {
   render() {
     return (
       <React.Fragment>
-        <Typography variant="h5">Contact List</Typography>
-        <table className="table-contacts">
+        <caption>Contact List</caption>
+        <table className="contactTable">
           <thead>
             <tr>
               <th>E-Mail</th>
@@ -38,7 +36,7 @@ class Contacts extends Component {
           </thead>
           <tbody>{this.tabRow()}</tbody>
         </table>
-      </React.Fragment >
+      </React.Fragment>
     );
   }
 }

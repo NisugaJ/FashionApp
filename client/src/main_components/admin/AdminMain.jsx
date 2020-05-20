@@ -1,12 +1,12 @@
 import React, { Component } from "react";
+import "./admin.scss";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import NavBtn from "./navBtn";
 import Content1 from "./content1";
 import Content2 from "./content2";
 import Contacts from "./contacts";
-import "./admin.scss";
 
-class AdminDashboard extends Component {
+class SideBar extends Component {
   constructor(props) {
     super(props);
     this.state = { activeArray: [0, 0, 0], name: "" };
@@ -67,4 +67,4 @@ class AdminDashboard extends Component {
   }
 }
 
-export default AdminDashboard;
+export default SideBar;
