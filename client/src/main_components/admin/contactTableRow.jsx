@@ -19,7 +19,7 @@ class contactTableRow extends Component {
         <td>{this.props.obj.Email}</td>
         <td>{this.props.obj.Subject}</td>
         <td>{this.props.obj.Message}</td>
-        <td>
+        <td className="actions">
           <button className="replyBtn">
             <a href={`mailto:${this.props.obj.Email}`}>Email</a>
           </button>
