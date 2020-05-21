@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@material-ui/core";
 
 //the main content in the home page
 export const showcase = () => {
@@ -17,9 +18,13 @@ export const showcase = () => {
             <i style={{ fontSize: "4rem" }}>Outstanding</i>
           </h1>
           <br />
-          <label className="btn-primary">
+          <Link className="btn-primary" href="#popular_items">
             <i className="fas fa-shopping-bag"></i> Let's Shop
-          </label>
+          </Link>
+          <br />
+          <Link className="btn-primary" to="/signup">
+            Signup Today
+          </Link>
         </div>
       </div>
     </header>

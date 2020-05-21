@@ -7,9 +7,13 @@ export const Home = () => {
   return (
     <React.Fragment>
       <Showcase />
-      <SpecialItems title={"Popular Items"} />
+      <div id="popular_items">
+        <SpecialItems title={"Popular Items"} />
+      </div>
       <WhyUs />
-      <SpecialItems title={"New Items"} />
+      <div id="new_items">
+        <SpecialItems title={"New Items"} id="new_items" />
+      </div>
     </React.Fragment>
   );
 };

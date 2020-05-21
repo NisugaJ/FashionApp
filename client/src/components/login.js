@@ -5,7 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline"
 import TextField from "@material-ui/core/TextField"
 import Typography from "@material-ui/core/Typography"
 import React, { useEffect, useState } from "react"
-import { useHistory, useLocation } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import BaseAxios from "../config/axios"
 import { isLogged } from "./auth"
@@ -46,8 +46,6 @@ const UserLogin = () => {
   const classes = useStyles()
 
   const history = useHistory()
-  let location = useLocation()
-  let { from } = location.state || { from: { pathname: "/" } }
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -60,7 +58,7 @@ const UserLogin = () => {
       history.replace("/dashboard") //Going to admin panel
       window.location.reload()
     }
-  }, [isLoggedIn])
+  }, [isLoggedIn, history])
 
   const LoginUser = event => {
     event.preventDefault()
