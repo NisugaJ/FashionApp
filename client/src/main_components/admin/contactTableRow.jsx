@@ -14,9 +14,9 @@ class contactTableRow extends Component {
     )
       .then(() => {
         console.log("Deleted")
-        this.props.allContacts = this.props.allContacts.filter(function (obj) {
-          return obj._id !== this.props.obj._id;
-        });
+        // this.props.allContacts = this.props.allContacts.filter(function (obj) {
+        //   return obj._id !== this.props.obj._id;
+        // });
       })
       .catch((err) => console.log(err));
   }
@@ -30,7 +30,7 @@ class contactTableRow extends Component {
           <Buttonv2 href={`mailto:${this.props.obj.Email}`} variant="contained" color="primary">
             Email
             </Buttonv2>
-          <Buttonv2 variant="contained" color="" onClick={this.delete}>
+          <Buttonv2 variant="contained" color="" onClick={() => { this.delete(); this.props.onClick() }}>
             Delete
           </Buttonv2>
         </td>

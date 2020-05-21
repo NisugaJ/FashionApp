@@ -8,8 +8,10 @@ class Contacts extends Component {
   constructor(props) {
     super(props);
     this.state = { contacts: [] };
+    this.loadContacts = this.loadContacts.bind(this);
   }
-  componentDidMount() {
+
+  loadContacts() {
     Axios.get("http://localhost:3000/contact/all")
       .then((response) => {
         this.setState({ contacts: response.data });
@@ -18,9 +20,13 @@ class Contacts extends Component {
         console.log(error);
       });
   }
+
+  componentDidMount() {
+    this.loadContacts()
+  }
   tabRow() {
     return this.state.contacts.map((object, i) => {
-      return <TableRow obj={object} key={i} allContacts={this.state.contacts} />;
+      return <TableRow obj={object} key={i} onClick={() => this.loadContacts()} />
     });
   }
   render() {

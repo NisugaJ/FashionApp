@@ -12,6 +12,7 @@ import Image from "../../components/logo_image";
 import { Typography, Badge } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 import NoMatch from "../../components/NotFound_404";
+import { RegistrationPage } from "./SignUp";
 
 function LandingPageSubPage() {
   let { subRouteID } = useParams()
@@ -24,6 +25,9 @@ function LandingPageSubPage() {
       break
     case "contact":
       landingPageSubPage = <Contact />
+      break
+    case "signup":
+      landingPageSubPage = <RegistrationPage />
       break
 
     default:
