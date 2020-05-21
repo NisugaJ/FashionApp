@@ -3,10 +3,12 @@ import "./admin.scss";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import NavBtn from "./navBtn";
 import Content1 from "./content1";
-import Content2 from "./content2";
+import managerAdd from "../admin/addmanager";
 import Contacts from "./contacts";
+
 import LogoImage from "../../components/logo_image";
 import { Button } from "@material-ui/core";
+
 
 class SideBar extends Component {
   constructor(props) {
@@ -45,12 +47,12 @@ class SideBar extends Component {
                   name="Dashboard"
                 />
               </Link>
-              <Link to={"/dashboard/member"} style={{ textDecoration: "none" }}>
+              <Link to={"/dashboard/addManager"} style={{ textDecoration: "none" }}>
                 <NavBtn
                   id={1}
                   active={this.state.activeArray[1]}
                   clickHandler={this.clickHandler}
-                  name="Members"
+                  name="Manager"
                 />
               </Link>
               <Link to={"/dashboard/contact"} style={{ textDecoration: "none" }}>
@@ -66,7 +68,7 @@ class SideBar extends Component {
           <div id="sideContent">
             <Switch>
               <Route exact path="/dashboard" component={Content1} />
-              <Route path="/dashboard/member" component={Content2} />
+              <Route path="/dashboard/addManager" component={managerAdd} />
               <Route path="/dashboard/contact" component={Contacts} />
             </Switch>
           </div>
