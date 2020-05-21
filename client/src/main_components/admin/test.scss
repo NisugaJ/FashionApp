@@ -1,0 +1,211 @@
+@import "../../styles/colors";
+
+#admin {
+  display: flex;
+  flex-direction: row;
+}
+
+#sideMenu {
+    background-color: $dark-color;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    height: 100vh;
+    color: $primary-color;
+    position: static;
+  
+    > * {
+      width: 100%;
+    }
+  
+    .logo,
+    .user {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+    }
+  
+    .logo {
+      margin-top: 1rem;
+    }
+  
+    .navBtn {
+      // padding: 1rem;
+      display: flex;
+      flex-direction: column;
+  
+      div {
+        padding: 0.5rem 1.5rem;
+        box-shadow: 0px 0px 10px #00000045;
+  
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  #sideContent {
+    width: 85%;
+    padding: 4rem 4rem 0 4rem;
+    z-index: 1;
+  }
+
+  .actions {
+    display: flex;
+  }
+
+  caption {
+    width: 100px;
+  }
+
+  .delBtn,
+  .replyBtn {
+    padding: 0.25rem 1rem;
+    width: 100px;
+    border: none;
+    text-decoration: none;
+    margin-right: 0.5rem;
+  
+    &:hover {
+      transform: scale(0.98);
+    }
+  }
+  
+  .delBtn {
+    background-color: red;
+    color: white;
+  }
+  
+  .replyBtn {
+    background-color: slateblue;
+  
+    a {
+      text-decoration: none;
+      color: white;
+  
+      &:hover {
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 1280px) {
+    #admin {
+      flex-direction: column;
+    }
+  
+    #sideMenu {
+      width: 100%;
+      height: auto;
+      position: fixed;
+      bottom: 0;
+  
+      .logo,
+      .user {
+        display: none;
+      }
+  
+      .navBtn {
+        padding: 0;
+        flex-direction: row;
+        text-align: center;
+        justify-content: space-evenly;
+      }
+    }
+  
+    #sideContent {
+      margin-top: 50px;
+      width: 100%;
+      padding: 1rem;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    #admin {
+      flex-direction: column;
+    }
+  
+    #sideMenu {
+      width: 100%;
+      height: auto;
+      position: fixed;
+      bottom: 0;
+  
+      .logo,
+      .user {
+        display: none;
+      }
+  
+      .navBtn {
+        padding: 0;
+        flex-direction: row;
+        text-align: center;
+        justify-content: space-evenly;
+  
+        div {
+          padding: 0.5rem;
+          border-left: none;
+  
+          &:hover {
+            border: none;
+            background-color: #555;
+          }
+        }
+      }
+    }
+    .table-contacts {
+      display: flex;
+  
+      thead tr {
+        //   display: flex;
+        //   flex-direction: column;
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      tbody tr {
+        display: flex;
+        flex-direction: column;
+        td {
+          /* Behave  like a "row" */
+          border: none;
+          border-bottom: 1px solid #eee;
+          position: relative;
+          padding-left: 50%;
+        }
+  
+        td::before {
+          /* Now like a table header */
+          position: absolute;
+          /* Top/left values mimic padding */
+          top: 6px;
+          left: 6px;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+          font-weight: bold;
+        }
+  
+        td:nth-of-type(1):before {
+          content: "Email";
+        }
+        td:nth-of-type(2):before {
+          content: "Subject";
+        }
+        td:nth-of-type(3):before {
+          content: "Message";
+        }
+        td:nth-of-type(4):before {
+          content: "Actions";
+        }
+      }
+    }
+    #sideContent {
+      margin-top: 50px;
+      width: 100%;
+      padding: 1rem;
+    }
+  }

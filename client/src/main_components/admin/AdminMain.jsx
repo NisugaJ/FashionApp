@@ -5,7 +5,7 @@ import Content1 from "./content1";
 import managerAdd from "../admin/addmanager";
 import Contacts from "./contacts";
 import "./admin.scss";
-
+// import "./test.scss"
 
 class AdminDashboard extends Component {
   constructor(props) {
