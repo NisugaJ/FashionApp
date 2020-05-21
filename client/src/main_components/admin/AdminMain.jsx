@@ -1,13 +1,16 @@
 import React, { Component } from "react";
+import "./admin.scss";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import NavBtn from "./navBtn";
 import Content1 from "./content1";
 import managerAdd from "../admin/addmanager";
 import Contacts from "./contacts";
-import "./admin.scss";
-// import "./test.scss"
 
-class AdminDashboard extends Component {
+import LogoImage from "../../components/logo_image";
+import { Button } from "@material-ui/core";
+
+
+class SideBar extends Component {
   constructor(props) {
     super(props);
     this.state = { activeArray: [0, 0, 0], name: "" };
@@ -25,7 +28,14 @@ class AdminDashboard extends Component {
         <div id="admin">
           <div id="sideMenu">
             <section className="logo">
-              <i className="fas fa-crown fa-3x"></i>
+              <Button
+                color="inherit"
+                aria-label="logo"
+              >
+                <a href="/">
+                  <LogoImage size={3} />
+                </a>
+              </Button>
             </section>
             <h3 className="user">Admin</h3>
             <div className="navBtn">
@@ -68,4 +78,4 @@ class AdminDashboard extends Component {
   }
 }
 
-export default AdminDashboard;
+export default SideBar;

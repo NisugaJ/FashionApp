@@ -42,6 +42,13 @@ let MainOuterTheme = createMuiTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"'
     ].join(",")
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        textTransform: 'none',
+      }
+    }
   }
 })
 

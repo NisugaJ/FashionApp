@@ -1,6 +1,7 @@
 @import "../../styles/colors";
 
 #admin {
+  overflow-x: hidden;
   display: flex;
   flex-direction: row;
 }
@@ -14,7 +15,7 @@
   color: $primary-color;
   position: static;
 
-  > * {
+  >* {
     width: 100%;
   }
 
@@ -30,8 +31,11 @@
     margin-top: 1rem;
   }
 
+  .user {
+    padding-bottom: 20px;
+  }
+
   .navBtn {
-    // padding: 1rem;
     display: flex;
     flex-direction: column;
 
@@ -49,6 +53,7 @@
 .actions {
   display: flex;
 }
+
 caption {
   width: 100px;
 }
@@ -91,6 +96,44 @@ caption {
   }
 }
 
+.table-grid {
+  border-collapse: collapse;
+  margin: 20px 5px 10px 5px;
+
+  thead tr {
+    height: flex;
+    height: 2rem;
+    border-bottom: 2px solid rgb(175, 172, 172);
+  }
+
+  tbody tr {
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+
+    td {
+      // background-color: yellow;
+      padding: 0.7rem;
+    }
+  }
+}
+
+@media screen and (min-width:1280px) {
+  .table-grid {
+
+    thead tr {
+      height: flex;
+    }
+
+    tbody tr {
+
+      td {
+        // background-color: yellow;
+        padding: 0.7rem;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1280px) {
   #admin {
     flex-direction: column;
@@ -110,7 +153,6 @@ caption {
     .navBtn {
       padding: 0;
       flex-direction: row;
-      text-align: center;
       justify-content: space-evenly;
     }
   }
@@ -119,6 +161,22 @@ caption {
     margin-top: 50px;
     width: 100%;
     padding: 1rem;
+  }
+
+
+  .table-grid {
+
+    thead tr {
+      height: flex;
+    }
+
+    tbody tr {
+
+      td {
+        // background-color: yellow;
+        padding: 0.7rem;
+      }
+    }
   }
 }
 
@@ -155,19 +213,22 @@ caption {
       }
     }
   }
-  .table-contacts {
+
+  .table-grid {
     display: flex;
 
+
     thead tr {
-      //   display: flex;
-      //   flex-direction: column;
       position: absolute;
       top: -9999px;
       left: -9999px;
     }
+
     tbody tr {
       display: flex;
+
       flex-direction: column;
+
       td {
         /* Behave  like a "row" */
         border: none;
@@ -191,17 +252,21 @@ caption {
       td:nth-of-type(1):before {
         content: "Email";
       }
+
       td:nth-of-type(2):before {
         content: "Subject";
       }
+
       td:nth-of-type(3):before {
         content: "Message";
       }
+
       td:nth-of-type(4):before {
         content: "Actions";
       }
     }
   }
+
   #sideContent {
     margin-top: 50px;
     width: 100%;

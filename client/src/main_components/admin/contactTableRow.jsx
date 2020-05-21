@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import Buttonv2 from "../../components/button";
+import backend_config from "../../config/backend_config";
 
 class contactTableRow extends Component {
   constructor(props) {
@@ -8,9 +10,14 @@ class contactTableRow extends Component {
   }
   delete() {
     Axios.delete(
-      "http://localhost:3000/api/contact/delete/" + this.props.obj._id
+      backend_config.baseURL + "contact/delete/" + this.props.obj._id
     )
-      .then(console.log("Deleted"))
+      .then(() => {
+        console.log("Deleted")
+        // this.props.allContacts = this.props.allContacts.filter(function (obj) {
+        //   return obj._id !== this.props.obj._id;
+        // });
+      })
       .catch((err) => console.log(err));
   }
   render() {
@@ -19,13 +26,13 @@ class contactTableRow extends Component {
         <td>{this.props.obj.Email}</td>
         <td>{this.props.obj.Subject}</td>
         <td>{this.props.obj.Message}</td>
-        <td>
-          <button className="replyBtn">
-            <a href={`mailto:${this.props.obj.Email}`}>Email</a>
-          </button>
-          <button className="delBtn" onClick={this.delete}>
+        <td className="actions">
+          <Buttonv2 href={`mailto:${this.props.obj.Email}`} variant="contained" color="primary">
+            Email
+            </Buttonv2>
+          <Buttonv2 variant="contained" color="" onClick={() => { this.delete(); this.props.onClick() }}>
             Delete
-          </button>
+          </Buttonv2>
         </td>
       </tr>
     );

@@ -32,4 +32,8 @@ const getLoggedInUserType = () => {
   return user.type
 }
 
-export { isLogged, logOut, getLoggedInUserType }
+export {
+  isLogged,
+  logOut,
+  getLoggedInUserType
+}
