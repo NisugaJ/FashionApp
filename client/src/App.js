@@ -13,8 +13,9 @@ import DateFnsUtils from "@date-io/date-fns"
 import LandingPage from "./landing_page/LandingPage"
 import AdminDashboard from './main_components/admin/AdminMain';
 import NoMatch from './components/NotFound_404';
-import StoreManagerDashboard from "./main_components/StoreManager/StoreManager"
-import CustomerDashboard from "./main_components/Customer/Customer"
+import StoreManagerDashboard from "./main_components/StoreManager/StoreManager";
+import CustomerDashboard from "./main_components/Customer/Customer";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const useStyles = makeStyles(theme => ({
   root: props => ({

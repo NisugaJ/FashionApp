@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import NavBtn from "./navBtn";
 import Content1 from "./content1";
-import Content2 from "./content2";
+import managerAdd from "../admin/addmanager";
 import Contacts from "./contacts";
 import "./admin.scss";
+
 
 class AdminDashboard extends Component {
   constructor(props) {
@@ -36,12 +37,12 @@ class AdminDashboard extends Component {
                   name="Dashboard"
                 />
               </Link>
-              <Link to={"/dashboard/member"} style={{ textDecoration: "none" }}>
+              <Link to={"/dashboard/addManager"} style={{ textDecoration: "none" }}>
                 <NavBtn
                   id={1}
                   active={this.state.activeArray[1]}
                   clickHandler={this.clickHandler}
-                  name="Members"
+                  name="Manager"
                 />
               </Link>
               <Link to={"/dashboard/contact"} style={{ textDecoration: "none" }}>
@@ -57,7 +58,7 @@ class AdminDashboard extends Component {
           <div id="sideContent">
             <Switch>
               <Route exact path="/dashboard" component={Content1} />
-              <Route path="/dashboard/member" component={Content2} />
+              <Route path="/dashboard/addManager" component={managerAdd} />
               <Route path="/dashboard/contact" component={Contacts} />
             </Switch>
           </div>
