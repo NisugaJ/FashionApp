@@ -11,3 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.btn:hover{
+  background-color:rgb(196, 148, 0)
+}
