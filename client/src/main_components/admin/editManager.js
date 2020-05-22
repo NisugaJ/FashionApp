@@ -1,9 +1,9 @@
+// edit.component.js
+
 import React, { Component } from 'react';
 import axios from 'axios';
-// import apis from '../../../api';
-const Swal = require('sweetalert2');
 
-export default class Create extends Component {
+export default class Edit extends Component {
     constructor(props) {
         super(props);
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
@@ -11,7 +11,7 @@ export default class Create extends Component {
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
-        // this.onChangeAccessToken = this.onChangeAccessToken.bind(this);
+        
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -19,10 +19,28 @@ export default class Create extends Component {
             last_name: '',
             username: '',
             password: '',
-            email: '',
-            // access_token: ''
+            email: ''
+            
         }
     }
+
+
+    componentDidMount() {
+        axios.get('http://localhost:3000/store_managers/edit/' + this.props.match.params.id)
+            .then(response => {
+                this.setState({
+                    first_name: response.data.first_name,
+                    last_name: response.data.last_name,
+                    username: response.data.username,
+                    password: response.data.password,
+                    email: response.data.email,
+                    
+                });
+            }).catch(function (error) {
+                console.log(error);
+            })
+    }
+
     onChangeFirstName(e) {
         this.setState({
             first_name: e.target.value
@@ -48,7 +66,8 @@ export default class Create extends Component {
             email: e.target.value
         })
     }
-   
+
+
     onSubmit(e) {
         e.preventDefault();
         const obj = {
@@ -56,33 +75,19 @@ export default class Create extends Component {
             last_name: this.state.last_name,
             username: this.state.username,
             password: this.state.password,
-            email: this.state.email
+            email: this.state.email,
+            
         };
 
-    //    apis.addAdmin(obj);
 
-    axios.post('http://localhost:3000/store_managers/add', obj)
-            .then(
-                res => console.log(res.data),
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Your work has been saved',
-                    showConfirmButton: false,
-                    
-                  })             
-);
+        axios.post('http://localhost:3000/store_managers/update/' + this.props.match.params.id, obj)
+            .then(res => console.log(res.data)); 
             
-
-        this.setState({
-            first_name: '',
-            last_name: '',
-            username: '',
-            password: '',
-            email: '',
-            // access_token: '',
-        })
+            //push after the update to view page
+            this.props.history.push('/dashboard/viewManager');
     }
+
+
     render() {
         return (
             <div style={{ marginTop: 10 }}>
@@ -92,7 +97,7 @@ export default class Create extends Component {
                     <h3>Add New Manager</h3>
                     <form onSubmit={this.onSubmit} method="POST" action="send">
                     <div className="form-group">
-                        <label>First Name:  </label>
+                        <label>First Name :  </label>
                         <input type="text" className="form-control" value={this.state.first_name} onChange={this.onChangeFirstName} />
                     </div>
                     <div className="form-group">
@@ -111,8 +116,12 @@ export default class Create extends Component {
                         <label>Email: </label>
                         <input type="email" className="form-control" name="email" value={this.state.email} onChange={this.onChangeEmail} />
                     </div>
+                    {/* <div className="form-group">
+                        <label>Access Level: </label>
+                        <input type="text" className="form-control"  value={this.state.access_token} onChange={this.onChangeAccessToken} />
+                    </div> */}
                     <div className="form-group">
-                        <input type="submit" value="Add Managager" className="btn btn-primary" />
+                        <input type="submit" value="Update Managager" className="btn btn-primary" />
                     </div>
                 </form>
                     </div>
