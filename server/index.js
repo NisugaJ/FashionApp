@@ -10,6 +10,7 @@ const contactRoutes = require("./routes/contact.route");
 const paymentRoutes = require("./routes/payment.route");
 const authRoutes = require("./routes/auth.route");
 const managerRoutes = require("./routes/manager.route");
+const categoryRoutes = require("./routes/category.route");
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -29,6 +30,7 @@ app.use("/contact", contactRoutes);
 app.use("/payment", paymentRoutes);
 app.use("/auth", authRoutes);
 app.use("/store_managers", managerRoutes);
+app.use("/categories", categoryRoutes);
 
 app.listen(apiPort, () => {
     console.log(`Express Server is running on port ${apiPort} `);
