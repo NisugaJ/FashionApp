@@ -36,6 +36,7 @@
   }
 
   .navBtn {
+    // padding: 1rem;
     display: flex;
     flex-direction: column;
 
@@ -99,18 +100,16 @@ caption {
 .table-grid {
   border-collapse: collapse;
   margin: 20px 5px 10px 5px;
-
   thead tr {
     height: flex;
     height: 2rem;
     border-bottom: 2px solid rgb(175, 172, 172);
   }
 
-  tbody tr {
+  tbody tr{
     text-align: left;
     border-bottom: 1px solid #ddd;
-
-    td {
+    td{
       // background-color: yellow;
       padding: 0.7rem;
     }
@@ -124,9 +123,9 @@ caption {
       height: flex;
     }
 
-    tbody tr {
+    tbody tr{
 
-      td {
+      td{
         // background-color: yellow;
         padding: 0.7rem;
       }
@@ -163,16 +162,16 @@ caption {
     padding: 1rem;
   }
 
-
+  
   .table-grid {
 
     thead tr {
       height: flex;
     }
 
-    tbody tr {
+    tbody tr{
 
-      td {
+      td{
         // background-color: yellow;
         padding: 0.7rem;
       }
@@ -226,7 +225,7 @@ caption {
 
     tbody tr {
       display: flex;
-
+      
       flex-direction: column;
 
       td {

@@ -1,5 +1,4 @@
-
-module.exports.Definitions = Definitions = {
+export const Definitions = {
     clientTypes: {
         admin: 'ADMIN',
         store_manager: 'STORE_MANAGER',

@@ -2,7 +2,7 @@ import React from "react"
 import { MainOuterTheme } from "../styles/themes"
 
 const styles = {
-  color: MainOuterTheme.palette.primary.main
+  color: MainOuterTheme.palette.secondary.contrastText
 }
 const LogoImage = ({ size }) => {
   const cls = `fas fa-crown fa-${size}x`
