@@ -23,7 +23,6 @@ class CartList extends Component {
   };
 
   render() {
-    console.log(this.props.cart);
     return (
       <ul
         className="cartList"

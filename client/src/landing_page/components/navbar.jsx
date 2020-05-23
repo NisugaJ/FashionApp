@@ -1,6 +1,7 @@
 import React from "react";
 import NavButton from "./navbutton";
 import { useState } from "react";
+import { connect } from "react-redux";
 
 import {
   BrowserRouter as Router,
@@ -62,7 +63,7 @@ const NavBar = () => {
   // }, [])
 
   //when user click, this function change the state acording to that
-  const clickHandler = (id, name) => {
+  const clickHandler = (id) => {
     var arr = [0, 0, 0, 0];
     arr[id] = 1;
     setActiveArray(arr);
@@ -147,4 +148,7 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+const mapStateToProps = (state) => {
+  return { cart: state.cart };
+};
+export default connect(mapStateToProps)(NavBar);

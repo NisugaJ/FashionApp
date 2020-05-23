@@ -38,9 +38,16 @@ const getLoggedInUserType = () => {
   else return null
 }
 
+const getAccessToken = () => {
+  const user = JSON.parse(sessionStorage.getItem("user") || null)
+  if (user.accessToken) {
+    return user.accessToken.toString()
+  } else return null
+}
 
 export {
   isLogged,
   logOut,
-  getLoggedInUserType
+  getLoggedInUserType,
+  getAccessToken
 }

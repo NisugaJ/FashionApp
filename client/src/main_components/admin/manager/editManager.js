@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
+import backend_config from '../../../config/backend_config';
 
 export default class Edit extends Component {
     constructor(props) {
@@ -26,7 +27,7 @@ export default class Edit extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:3000/store_managers/edit/' + this.props.match.params.id)
+        axios.get(backend_config.baseURL + 'store_managers/edit/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     first_name: response.data.first_name,
@@ -80,11 +81,11 @@ export default class Edit extends Component {
         };
 
 
-        axios.post('http://localhost:3000/store_managers/update/' + this.props.match.params.id, obj)
+        axios.post(backend_config.baseURL + 'store_managers/update/' + this.props.match.params.id, obj)
             .then(res => console.log(res.data));
 
         //push after the update to view page
-        this.props.history.push('/dashboard/viewManager');
+        this.props.history.push('/dashboard/managers');
     }
 
 
@@ -94,7 +95,7 @@ export default class Edit extends Component {
 
                 <div className="row justify-content-center">
                     <div className="col-6">
-                        <h3>Add New Manager</h3>
+                        <h3>Update Manager</h3>
                         <form onSubmit={this.onSubmit} method="POST" action="send">
                             <div className="form-group">
                                 <label>First Name :  </label>

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import backend_config from '../../../config/backend_config';
 // import apis from '../../../api';
 const Swal = require('sweetalert2');
 
-export default class Create extends Component {
+export default class CreateCategory extends Component {
     constructor(props) {
         super(props);
         this.onChangeName = this.onChangeName.bind(this);
@@ -38,13 +39,13 @@ export default class Create extends Component {
 
         //    apis.addAdmin(obj);
 
-        axios.post('http://localhost:3000/categories/add', obj)
+        axios.post(backend_config.baseURL + 'categories/add', obj)
             .then(
                 res => console.log(res.data),
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Your work has been saved',
+                    title: 'Added Cateory Successfully',
                     showConfirmButton: false,
 
                 })
@@ -62,7 +63,7 @@ export default class Create extends Component {
 
                 <div className="row justify-content-center">
                     <div className="col-6">
-                        <h3>Add New Categories</h3>
+                        <h3>Add New Category</h3>
                         <form onSubmit={this.onSubmit} method="POST" action="sent">
                             <div className="form-group">
                                 <label>Category Name:  </label>

@@ -13,7 +13,6 @@ class Products extends Component {
   }
 
   render() {
-    console.log(this.props.cart);
     return (
       <React.Fragment>
         <div className="products">

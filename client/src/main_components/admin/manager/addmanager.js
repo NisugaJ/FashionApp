@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import backend_config from '../../../config/backend_config';
 // import apis from '../../../api';
 const Swal = require('sweetalert2');
 
-export default class Create extends Component {
+export default class CreateManager extends Component {
     constructor(props) {
         super(props);
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
@@ -59,20 +60,18 @@ export default class Create extends Component {
             email: this.state.email
         };
 
-        //    apis.addAdmin(obj);
 
-        axios.post('http://localhost:3000/store_managers/add', obj)
+        axios.post(backend_config.baseURL + 'store_managers/add', obj)
             .then(
                 res => console.log(res.data),
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Your work has been saved',
+                    title: 'Added Manager Successfully',
                     showConfirmButton: false,
 
                 })
             );
-
 
         this.setState({
             first_name: '',

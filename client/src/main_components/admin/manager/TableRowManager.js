@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import backend_config from '../../../config/backend_config';
 const Swal = require('sweetalert2');
 
 class TableRow extends Component {
@@ -25,7 +26,7 @@ class TableRow extends Component {
         }).then((result) => {
             if (result.value) {
 
-                axios.get('http://localhost:3000/store_managers/delete/' + this.props.obj._id)
+                axios.get(backend_config.baseURL + 'store_managers/delete/' + this.props.obj._id)
                     .then(console.log('Deleted'))
                     .catch(err => console.log(err))
 
