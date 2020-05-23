@@ -19,9 +19,9 @@ const createContact = (req, res) => {
 const getContact = (req, res) => {
   Contact.find((err, contacts) => {
     if (err) {
-      console.log(err);
+      console.log(err)
     } else {
-      res.json(contacts);
+      res.json(contacts)
     }
   });
 };
@@ -56,9 +56,9 @@ const searchContact = (req, res) => {
 
 //delete controller
 const deleteContact = (req, res) => {
-  Contact.findByIdAndRemove({
-      _id: req.params.id,
-    },
+  Contact.remove({
+    _id: req.params.id,
+  },
     (err, contacts) => {
       if (err) res.json(err);
       else res.json("Successfully removed");
