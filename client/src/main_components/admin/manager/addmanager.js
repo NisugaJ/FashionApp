@@ -112,7 +112,7 @@ export default class Create extends Component {
                                 <input type="email" className="form-control" name="email" value={this.state.email} onChange={this.onChangeEmail} />
                             </div>
                             <div className="form-group">
-                                <input type="submit" value="Add Manager" className="btn btn-primary" />
+                                <input type="submit" value="Add Manager" className="btn btn-success" />
                             </div>
                         </form>
                     </div>
