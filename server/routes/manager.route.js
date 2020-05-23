@@ -21,4 +21,5 @@ managerRoutes.route('/update/:id').post(managerController.updateManager);
 managerRoutes.route("/delete/:id").get(managerController.deleteManager);
 
 
+
 module.exports = managerRoutes;

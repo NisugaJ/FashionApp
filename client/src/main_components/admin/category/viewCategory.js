@@ -2,31 +2,34 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-import TableRow from './TableRowManager';
-import PureProgressSpinner from "../../components/PureProgressSpinner";
+import TableRow from './TableRowCategory';
+import PureProgressSpinner from "../../../components/PureProgressSpinner";
 
 export default class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            store_managers: []
+            categories: []
         };
     }
 
 
     componentDidMount() {
-        axios.get('http://localhost:3000/store_managers/')
+        axios.get('http://localhost:3000/categories')
             .then(response => {
-                this.setState({ store_managers: response.data });
+                this.setState({ categories: response.data });
             })
             .catch(function (error) {
                 console.log(error);
             })
+
+        
+
     }
 
 
     tabRow() {
-        return this.state.store_managers.map(function (object, i) {
+        return this.state.categories.map(function (object, i) {
             return <TableRow obj={object} key={i} />;
         });
     }
@@ -34,21 +37,18 @@ export default class Index extends Component {
 
 
     render() {
-        if (this.state.store_managers.length === 0) {
-            return <PureProgressSpinner message="Loading Manager Details..." />
+        if (this.state.categories.length === 0) {
+            return <PureProgressSpinner message="Loading category Details..." />
         }
 
         return (
             <div>
-                <h3 align="center">Store manager list</h3>
+                <h3 align="center">Category list</h3>
                 <table className="table table-striped" style={{ marginTop: 20 }}>
                     <thead>
                         <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                            <th>Email</th>
+                            <th>Category Name</th>
+                            <th>Category Details</th>
                             <th>Update</th>
                             <th>Delete</th>
                         </tr>
@@ -57,6 +57,7 @@ export default class Index extends Component {
                         {this.tabRow()}
                     </tbody>
                 </table >
+
             </div >
         );
     }

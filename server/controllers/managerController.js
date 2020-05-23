@@ -106,10 +106,12 @@ const deleteManager = (req, res) => {
     });
 };
 
+
 module.exports = {
     createManager,
     getManagerDetails,
     getEditDetails,
     updateManager,
     deleteManager
+    
 };
