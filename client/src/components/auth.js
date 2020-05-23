@@ -25,8 +25,8 @@ const getLoggedInUserType = () => {
   // console.log("inside usertype", user);
 
   const user = {
-    type: 'ADMIN',
-    // type: 'STORE_MANAGER',
+    //type: 'ADMIN',
+     type: 'STORE_MANAGER',
     // type: 'CUSTOMER'
   }
   // if (user.userType === null)

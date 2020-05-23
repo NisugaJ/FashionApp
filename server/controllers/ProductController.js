@@ -32,18 +32,17 @@ const addProduct = function(req, res) {
 }
 
 //UPDATE product by ID
-/*
 const updateProductById = function(req, res) {
     Product.findById(req.params.id, function(err, product) {
         if (!product)
             res.status(404).send("data is not found");
         else
-            product.product_name = req.body.product_name;
-            product.product_description = req.body.product_description;
-            product.product_price = req.body.product_price;
-            product.product_stock = req.body.product_stock;
-            product.product_featured_image = req.body.product_featured_image;
-            product.product_category = req.body.product_category;
+            product.name = req.body.name;
+            product.description = req.body.description;
+            product.price = req.body.price;
+            product.qty = req.body.qty;
+            product.image_path = req.body.image_path;
+            product.category_id = req.body.category_id;
 
             product.discount_percentage = req.body.discount_percentage;
             product.discount_info = req.body.discount_info;
@@ -56,23 +55,39 @@ const updateProductById = function(req, res) {
             });
     });
 }
-*/
 
-const deleteProduct = (req, res) => {
-    Product.findByIdAndRemove({
-            _id: req.params.id,
-        },
-        (err, products) => {
-            if (err) res.json(err);
-            else res.json("Successfully removed");
-        }
-    );
-};
+//Delete product
+const deleteProduct = function (req, res) {
+    Product.findByIdAndRemove({ _id: req.params.id }, function (err, product) {
+        if (err) res.json(err);
+        else res.json('Product Deleted Successfully');
+    });
+}
+
+//VIEW only one product
+const viewOneProduct = function(req, res) {
+    let id = req.params.id;
+    Product.findById(id, function(err, product) {
+        res.json(product);
+    });
+}
+
+//UPLOAD image - Using the cloudinary widget, so this won't be used, incase widget doesn't work the back end is here.
+const uploadImage = function(req, res, next){
+    const file = req.files.photo;
+    cloudinary.uploader.upload(file.tempFilePath, function(err, result){
+        console.log(err),
+        console.log(result),
+        console.log(result.secure_url)
+    });
+}
 
 module.exports = {
     getAllProducts,
     getProductById,
     addProduct,
     updateProductById,
-    deleteProduct
+    deleteProduct,
+    viewOneProduct,
+    uploadImage
 };
