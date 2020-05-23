@@ -76,7 +76,8 @@ let App = () => {
                     <LandingPage />
                   </Route>
                   <PrivateRoute path="/dashboard">
-                    {currrentUserType === 'ADMIN' ? <AdminDashboard />
+                    {currrentUserType === 'ADMIN' ?
+                        <AdminDashboard />
                       : currrentUserType === 'STORE_MANAGER' ?
                         <InnerWrapper>
                           <StoreManagerDashboard />
@@ -111,12 +112,13 @@ const RenderFooter = () => {
   // const classes = useStyles
 
   return (
-    <div style={{ padding: 5, marginTop: 20, margin: 0 }}>
+    <div style={{ padding: 5, marginTop: 20, margin: 0}}>
       <div style={{ textAlign: "center" }}>
         <Link style={{ textDecoration: "none" }} href="http://www.example.net">
           Luxe Fashions
-        </Link>
+        
         © {new Date().getFullYear()}
+        </Link>
       </div>
     </div>
   )

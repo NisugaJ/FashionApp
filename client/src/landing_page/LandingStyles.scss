@@ -1,7 +1,4 @@
-$primary-color:#f2bc18;
-$dark-color:#333;
-$light-color: #eee;
-$buy-color:rgb(117, 200, 255);
+@import '../styles/colors';
 
 
 * {
@@ -41,14 +38,6 @@ $buy-color:rgb(117, 200, 255);
   padding: 2rem 0;
 }
 
-.btn-buy {
-  font-size: 1rem;
-  padding: 0.5rem 2rem;
-  border: none;
-  border-radius: 0.7rem;
-  background-color: $buy-color;
-  float: right;
-}
 
 .card {
   background-color: #fff;
@@ -68,6 +57,40 @@ $buy-color:rgb(117, 200, 255);
   }
 }
 
+.btn-card {
+
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    transform: scale(0.98);
+  }
+
+}
+
+.btn-buy {
+  margin: 0.25rem;
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 0.7rem;
+  background-color: $buy-color;
+  float: right;
+}
+
+.btn-cart {
+  margin: 0.25rem;
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 0.7rem;
+  background-color: $cart-color;
+  float: right;
+}
+
 /*navbar*/
 .nav-container {
   display: flex;
@@ -76,7 +99,6 @@ $buy-color:rgb(117, 200, 255);
 }
 
 #navbar {
-  padding: 0.5rem;
   position: absolute;
   z-index: 1;
   top: 0;
@@ -87,7 +109,12 @@ $buy-color:rgb(117, 200, 255);
 #logo {
   display: flex;
   color: $primary-color;
-  // padding: 0 2rem;
+  padding: 0 1rem;
+  cursor: pointer;
+
+  i {
+    padding-top: .5rem;
+  }
 
   >* {
     padding: 0 0.25rem;
@@ -100,7 +127,7 @@ $buy-color:rgb(117, 200, 255);
   align-self: center;
 
   li {
-    margin: 1rem;
+    margin: 1rem .5rem 0rem .5rem;
     padding: 0.5rem 1rem;
     cursor: pointer;
     border-radius: 1rem;

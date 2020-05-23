@@ -1,12 +1,22 @@
 import React from "react";
 import NavButton from "./navbutton";
-import { useState } from "react"
+import { useState } from "react";
 
-import { BrowserRouter as Router, Switch, Route, Link, useParams, useRouteMatch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
 
 import Home from "./home";
 import About from "./about";
 import Contact from "./contact";
+import Shop from "../Products/porducts";
+import CartList from "../Cart/cartList";
+
 import { isLogged } from "../../components/auth";
 import Image from "../../components/logo_image";
 import { Typography, Badge } from "@material-ui/core";
@@ -15,62 +25,77 @@ import NoMatch from "../../components/NotFound_404";
 import { RegistrationPage } from "./SignUp";
 
 function LandingPageSubPage() {
-  let { subRouteID } = useParams()
+  let { subRouteID } = useParams();
 
-  let landingPageSubPage = <NoMatch />
+  let landingPageSubPage = <NoMatch />;
 
   switch (subRouteID) {
     case "about":
-      landingPageSubPage = <About />
-      break
+      landingPageSubPage = <About />;
+      break;
     case "contact":
-      landingPageSubPage = <Contact />
-      break
+      landingPageSubPage = <Contact />;
+      break;
     case "signup":
-      landingPageSubPage = <RegistrationPage />
-      break
+      landingPageSubPage = <RegistrationPage />;
+      break;
+    case "shop":
+      landingPageSubPage = <Shop />;
+      break;
+    case "cart":
+      landingPageSubPage = <CartList />;
+      break;
 
     default:
-      break
+      break;
   }
-  return landingPageSubPage
+  return landingPageSubPage;
 }
 
-
 const NavBar = () => {
-  const [activeArray, setActiveArray] = useState([1, 0, 0, 0])
+  const [activeArray, setActiveArray] = useState([0, 0, 0, 0]);
 
-  let { path, url } = useRouteMatch()
+  let { path, url } = useRouteMatch();
 
   // useEffect(() => {
   //   setActiveArray([1, 0, 0, 0])
   // }, [])
 
-
   //when user click, this function change the state acording to that
   const clickHandler = (id, name) => {
     var arr = [0, 0, 0, 0];
     arr[id] = 1;
-    setActiveArray(arr)
-  }
-
+    setActiveArray(arr);
+  };
 
   return (
     <Router>
       <div id="navbar">
         <div className="container nav-container">
-          <div id="logo" style={{
-            display: "flex",
-            alignItems: "center",
-          }}>
-            <Link to={`${url}`} style={{ textDecoration: "none", height: "auto" }}>
+          <div
+            id="logo"
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Link
+              to={`${url}`}
+              style={{ textDecoration: "none", height: "auto" }}
+            >
               <Image size={3} />
             </Link>
-            <Typography variant="h5"  >
-              Luxe Fashions
-            </Typography>
+            <Typography variant="h5">Luxe Fashions</Typography>
           </div>
           <ul id="navigation">
+            <Link to={`${url}/shop`} style={{ textDecoration: "none" }}>
+              <NavButton
+                id={0}
+                active={activeArray[0]}
+                clickHandler={clickHandler}
+                name="Shop"
+              />
+            </Link>
             <Link to={`${url}/about`} style={{ textDecoration: "none" }}>
               <NavButton
                 id={1}
@@ -91,22 +116,24 @@ const NavBar = () => {
               <NavButton
                 id={3}
                 active={activeArray[3]}
-                clickHandler={() => window.location.replace('/dashboard')}
-                name={isLogged() ? "My Dashboard" : "Login"}
+                clickHandler={() => window.location.replace("/dashboard")}
+                name={isLogged() ? "Dashboard" : "Login"}
               />
             </Link>
-            <li style={{ "boxShadow": "none" }}>
-              {/* <IconButton aria-label="cart"> */}
-              <Badge badgeContent={1} color="secondary" variant="standard" >
-                <ShoppingCart fontSize="large" />
-              </Badge>
-              {/* </IconButton> */}
-            </li>
+            <Link to={`${url}/cart`} style={{ textDecoration: "none" }}>
+              <li style={{ boxShadow: "none" }}>
+                {/* <IconButton aria-label="cart"> */}
+                <Badge badgeContent={1} color="secondary" variant="standard">
+                  <ShoppingCart fontSize="large" />
+                </Badge>
+                {/* </IconButton> */}
+              </li>
+            </Link>
           </ul>
         </div>
       </div>
       <Switch>
-        <Route exact path={path}  >
+        <Route exact path={path}>
           <Home />
         </Route>
         <Route path={`${path}/:subRouteID`}>
@@ -118,6 +145,6 @@ const NavBar = () => {
       </Switch>
     </Router>
   );
-}
+};
 
 export default NavBar;
