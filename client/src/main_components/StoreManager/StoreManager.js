@@ -3,7 +3,7 @@ import React from "react"
 const StoreManagerDashboard = () => {
     return (
         <h4>
-            Store Manager Dashoard
+            Store Manager Dashboard
         </h4>
     )
 }
