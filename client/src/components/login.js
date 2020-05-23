@@ -55,23 +55,23 @@ const UserLogin = () => {
   useEffect(() => {
     if (isLoggedIn) {
       console.log("Now admin Dashboard should load")
-      history.replace("/dashboard") //Going to admin panel
-      window.location.reload()
+      // history.replace("/login") //Going to admin panel
+      window.location.pathname = "/dashboard"
     }
   }, [isLoggedIn, history])
 
   const LoginUser = event => {
     event.preventDefault()
-    BaseAxios.post("/user/login", {
+    BaseAxios.post("/auth/login", {
       username: username,
       password: password
     }).then(response => {
       const data = response.data
-      if (data.access_token && data.username) {
+      if (data.accessToken && data.user.username) {
         console.log(data);
 
-        sessionStorage.setItem("user", data)
-        console.log(sessionStorage.getItem("user"));
+        sessionStorage.setItem("user", JSON.stringify(data))
+        console.log(JSON.parse(sessionStorage.getItem("user")));
         setIsLoggedIn(true)
         console.log("Login Successfull")
       } else {

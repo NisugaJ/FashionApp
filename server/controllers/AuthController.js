@@ -43,7 +43,7 @@ const loginClient = (req, res) => {
                         User.findOne({ username: reqData.username, password: reqData.password }, (err, user) => {
                             if (user) {
                                 console.log('USER', user);
-                                sendJWT_SignedResponse(user, res, Definitions.clientTypes.store_manager)
+                                sendJWT_SignedResponse(user, res, Definitions.clientTypes.user)
                             } else {
                                 //Print as invalid 
                                 res.status(401).json({ success: false, message: "No User found" })
@@ -61,9 +61,7 @@ const loginClient = (req, res) => {
 function sendJWT_SignedResponse(loggedInUser, res, userType) {
 
     if (loggedInUser !== null) {
-        console.log(loggedInUser.toJSON());
         loggedInUser.password = undefined;
-
         const access_token = jwt.sign({ user: loggedInUser.toJSON(), userType: userType }, process.env.ACCESS_TOKEN_SECRET)
         res.status(200).json({ accessToken: access_token, user: loggedInUser, userType: userType })
     }

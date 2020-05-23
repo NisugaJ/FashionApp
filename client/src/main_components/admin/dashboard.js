@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
+import backend_config from '../../config/backend_config';
 
 
 export default class Index extends Component {
@@ -15,7 +16,7 @@ export default class Index extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:3000/store_managers')
+        axios.get(backend_config.baseURL + 'store_managers')
             .then(response => {
                 this.setState({ store_managers: response.data });
             })
@@ -24,7 +25,7 @@ export default class Index extends Component {
             })
 
 
-        axios.get('http://localhost:3000/categories')
+        axios.get(backend_config.baseURL + 'categories')
             .then(response => {
                 this.setState({ categories: response.data });
             })
@@ -50,12 +51,12 @@ export default class Index extends Component {
                                 No of Managers
                             </div>
                             <div className="card-body">
-                                
+
                                 <p className="card-text text-warning">{this.state.store_managers.length}</p>
-                                
+
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <div className="col-6">
@@ -65,12 +66,12 @@ export default class Index extends Component {
                                 No of Categories
                             </div>
                             <div className="card-body">
-                                
+
                                 <p className="card-text text-warning">{this.state.categories.length}</p>
-                                
+
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div >
