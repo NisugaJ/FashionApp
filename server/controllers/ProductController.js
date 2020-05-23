@@ -1,8 +1,8 @@
 let Product = require("../models/Product");
 
 //GET all products
-const getAllProducts = function(req, res) {
-    Product.find(function(err, products) {
+const getAllProducts = function (req, res) {
+    Product.find(function (err, products) {
         if (err) {
             console.log(err);
         } else {
@@ -12,19 +12,19 @@ const getAllProducts = function(req, res) {
 }
 
 //GET product by ID
-const getProductById = function(req, res) {
+const getProductById = function (req, res) {
     let id = req.params.id;
-    Product.findById(id, function(err, product) {
+    Product.findById(id, function (err, product) {
         res.json(product);
     });
 }
 
 //ADD new product
-const addProduct = function(req, res) {
+const addProduct = function (req, res) {
     let product = new Product(req.body);
     product.save()
         .then(product => {
-            res.status(200).json({'product': 'product added successfully'});
+            res.status(200).json({ 'product': 'product added successfully' });
         })
         .catch(err => {
             res.status(400).send('adding new product failed');
@@ -60,8 +60,8 @@ const updateProductById = function(req, res) {
 
 const deleteProduct = (req, res) => {
     Product.findByIdAndRemove({
-            _id: req.params.id,
-        },
+        _id: req.params.id,
+    },
         (err, products) => {
             if (err) res.json(err);
             else res.json("Successfully removed");
@@ -73,6 +73,6 @@ module.exports = {
     getAllProducts,
     getProductById,
     addProduct,
-    updateProductById,
+    // updateProductById,
     deleteProduct
 };

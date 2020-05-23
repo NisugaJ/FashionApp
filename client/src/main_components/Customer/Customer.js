@@ -3,7 +3,7 @@ import React from "react"
 const CustomerDashboard = () => {
     return (
         <h4>
-            Customer Dashoard
+            Customer Dashboard
         </h4>
     )
 }
