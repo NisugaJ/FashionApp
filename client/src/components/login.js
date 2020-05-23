@@ -55,8 +55,8 @@ const UserLogin = () => {
   useEffect(() => {
     if (isLoggedIn) {
       console.log("Now admin Dashboard should load")
-      // history.replace("/dashboard") //Going to admin panel
-      window.location.reload()
+      // history.replace("/login") //Going to admin panel
+      window.location.pathname = "/dashboard"
     }
   }, [isLoggedIn, history])
 
