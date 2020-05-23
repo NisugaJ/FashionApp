@@ -15,7 +15,7 @@ export default class Index extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:3000/store_managers')
+        axios.get('http://localhost:3000/store_managers/')
             .then(response => {
                 this.setState({ store_managers: response.data });
             })
@@ -31,12 +31,12 @@ export default class Index extends Component {
         });
     }
 
-   
+
 
     render() {
         if (this.state.store_managers.length === 0) {
             return <PureProgressSpinner message="Loading Manager Details..." />
-          }
+        }
 
         return (
             <div>

@@ -10,7 +10,6 @@ const contactRoutes = require("./routes/contact.route");
 const paymentRoutes = require("./routes/payment.route");
 const authRoutes = require("./routes/auth.route");
 const managerRoutes = require("./routes/manager.route");
-
 app.use(bodyParser.urlencoded({
     extended: true
 }))
@@ -33,3 +32,5 @@ app.use("/store_managers", managerRoutes);
 app.listen(apiPort, () => {
     console.log(`Express Server is running on port ${apiPort} `);
 })
+
+// 'npm run serve' will start the server in dev mode

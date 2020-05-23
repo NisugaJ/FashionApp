@@ -13,7 +13,7 @@ const createManager = (req, res) => {
             res.status(400).send("unable to save to database");
         });
 
-    
+
 
     const output = `
         <p>Dear user you have been added as a manager for our website.You can sell your items from our website</p>
@@ -41,7 +41,7 @@ const createManager = (req, res) => {
 
     // send mail with defined transport object
     let info = transporter.sendMail({
-        from: '"Ravindu" <ravindumigu@gmail.com>', // sender address
+        from: '"Luxe Fashions" <ravindumigu@gmail.com>', // sender address
         to: req.body.email, // list of receivers
         subject: "test", // Subject line
         text: "Hello world?", // plain text body
@@ -92,7 +92,7 @@ const updateManager = (req, res) => {
                 });
         }
     });
-    
+
 };
 
 

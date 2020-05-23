@@ -68,8 +68,10 @@ const UserLogin = () => {
     }).then(response => {
       const data = response.data
       if (data.access_token && data.username) {
-        sessionStorage.setItem("user", data.username)
-        sessionStorage.setItem("access_token", data.access_token)
+        console.log(data);
+
+        sessionStorage.setItem("user", data)
+        console.log(sessionStorage.getItem("user"));
         setIsLoggedIn(true)
         console.log("Login Successfull")
       } else {
