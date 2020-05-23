@@ -22,7 +22,7 @@ export const showcase = () => {
             <i className="fas fa-shopping-bag"></i> Let's Shop
           </Link>
           <br />
-          <Link className="btn-primary" to="/signup">
+          <Link className="btn-primary" href="/landing/signup">
             Signup Today
           </Link>
         </div>

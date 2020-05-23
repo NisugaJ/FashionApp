@@ -278,6 +278,68 @@
 }
 
 
+/*Contact us*/
+#signup {
+  padding-top: 6rem;
+  height: 100vh;
+  background: rgb(184,143,0);
+  background: linear-gradient(90deg, rgba(184,143,0,1) 0%, rgba(255,127,0,1) 50%, rgba(184,143,0,1) 100%);
+
+  #signup-content {
+    padding-bottom: 2rem;
+    height: 80vh;
+
+    >.container {
+      border-radius: 2rem;
+      padding: 2rem;
+
+      >form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        >* {
+          margin: 1rem;
+          border: none;
+          border-radius: .5rem;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        >input[type="email"],
+        >input[type="text"],
+        >input[type="submit"] {
+          padding: 1rem;
+          width: 40%;
+          background-color: #f2f2f2;
+        }
+
+        >input[type="submit"] {
+          background-color: $buy-color;
+          font-size: 1.5rem;
+          cursor: pointer;
+        }
+
+        >textarea {
+          padding: 5rem;
+          width: 40%;
+        }
+
+        @media (max-width: 768px){
+          >input[type="email"],
+          >input[type="text"],
+          >input[type="submit"] {
+            width: 90%;
+          }
+          >textarea {
+            width: 90%;
+          }
+  
+        }
+      }
+    }
+  }
+}
+
 
 
 /*Responsive*/
