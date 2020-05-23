@@ -2,34 +2,33 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-import TableRow from './TableRowCategory';
-import PureProgressSpinner from "../../components/PureProgressSpinner";
+import TableRow from './TableRowManager';
+import PureProgressSpinner from "../../../components/PureProgressSpinner";
 
 export default class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: []
+            store_managers: []
         };
     }
 
 
     componentDidMount() {
-        axios.get('http://localhost:3000/categories')
+        axios.get('http://localhost:3000/store_managers')
             .then(response => {
-                this.setState({ categories: response.data });
+                this.setState({ store_managers: response.data });
             })
             .catch(function (error) {
                 console.log(error);
             })
-
-        
-
     }
+
+   
 
 
     tabRow() {
-        return this.state.categories.map(function (object, i) {
+        return this.state.store_managers.map(function (object, i) {
             return <TableRow obj={object} key={i} />;
         });
     }
@@ -37,18 +36,21 @@ export default class Index extends Component {
 
 
     render() {
-        if (this.state.categories.length === 0) {
-            return <PureProgressSpinner message="Loading category Details..." />
+        if (this.state.store_managers.length === 0) {
+            return <PureProgressSpinner message="Loading Manager Details..." />
         }
 
         return (
             <div>
-                <h3 align="center">Category list</h3>
+                <h3 align="center">Store manager list</h3>
                 <table className="table table-striped" style={{ marginTop: 20 }}>
                     <thead>
                         <tr>
-                            <th>Category Name</th>
-                            <th>Category Details</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Email</th>
                             <th>Update</th>
                             <th>Delete</th>
                         </tr>

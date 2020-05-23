@@ -3,13 +3,13 @@ import "./admin.scss";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import NavBtn from "./navBtn";
 import dashboard from "./dashboard";
-import managerAdd from "../admin/addmanager";
+import managerAdd from "./manager/addmanager"
 import Contacts from "./contacts";
-import managerView from "../admin/viewManager";
-import managerEdit from '../admin/editManager';
-import categotyAdd from "../admin/addCategory";
-import categoryView from "../admin/viewCategory";
-import categoryEdit from '../admin/editCategory';
+import managerView from "./manager/viewManager";
+import managerEdit from './manager/editManager';
+import categotyAdd from "./category/addCategory";
+import categoryView from "./category/viewCategory";
+import categoryEdit from './category/editCategory';
 
 import LogoImage from "../../components/logo_image";
 import { Button } from "@material-ui/core";
