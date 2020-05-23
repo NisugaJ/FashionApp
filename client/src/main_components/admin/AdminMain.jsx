@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import "./admin.scss";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import NavBtn from "./navBtn";
-import Content1 from "./content1";
+import dashboard from "./dashboard";
 import managerAdd from "../admin/addmanager";
 import Contacts from "./contacts";
 import managerView from "../admin/viewManager";
 import managerEdit from '../admin/editManager';
+import categotyAdd from "../admin/addCategory";
+import categoryView from "../admin/viewCategory";
+import categoryEdit from '../admin/editCategory';
 
 import LogoImage from "../../components/logo_image";
 import { Button } from "@material-ui/core";
@@ -15,12 +18,12 @@ import { Button } from "@material-ui/core";
 class SideBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeArray: [0, 0, 0,0], name: "" };
+    this.state = { activeArray: [0, 0, 0,0,0,0], name: "" };
     this.clickHandler = this.clickHandler.bind(this);
   }
 
   clickHandler(id, name) {
-    var arr = [0, 0, 0,0];
+    var arr = [0, 0, 0,0,0,0];
     arr[id] = 1;
     this.setState({ activeArray: arr, name: name });
   }
@@ -65,10 +68,26 @@ class SideBar extends Component {
                   name="View Manager"
                 />
               </Link>
-              <Link to={"/dashboard/contact"} style={{ textDecoration: "none" }}>
+              <Link to={"/dashboard/addCategory"} style={{ textDecoration: "none" }}>
                 <NavBtn
                   id={3}
                   active={this.state.activeArray[3]}
+                  clickHandler={this.clickHandler}
+                  name="Add category"
+                />
+              </Link>
+              <Link to={"/dashboard/viewCategory"} style={{ textDecoration: "none" }}>
+                <NavBtn
+                  id={4}
+                  active={this.state.activeArray[4]}
+                  clickHandler={this.clickHandler}
+                  name="View category"
+                />
+              </Link>
+              <Link to={"/dashboard/contact"} style={{ textDecoration: "none" }}>
+                <NavBtn
+                  id={5}
+                  active={this.state.activeArray[5]}
                   clickHandler={this.clickHandler}
                   name="Contacts"
                 />
@@ -78,10 +97,13 @@ class SideBar extends Component {
           </div>
           <div id="sideContent">
             <Switch>
-              <Route exact path="/dashboard" component={Content1} />
+              <Route exact path="/dashboard" component={dashboard} />
               <Route path="/dashboard/addManager" component={managerAdd} />
               <Route path="/dashboard/viewManager" component={managerView} />
               <Route path='/dashboard/edit/:id' component={managerEdit} />
+              <Route path="/dashboard/addCategory" component={categotyAdd} />
+              <Route path="/dashboard/viewCategory" component={categoryView} />
+              <Route path='/dashboard/editCategory/:id' component={categoryEdit} />
               <Route path="/dashboard/contact" component={Contacts} />
             </Switch>
           </div>
