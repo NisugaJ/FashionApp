@@ -1,20 +1,40 @@
 import React from "react";
 
 //cards in special items
-export const card_article = props => {
+export const card_article = ({
+  id,
+  img,
+  title,
+  owner,
+  price,
+  category,
+  addToCart,
+}) => {
   return (
     <article className="card">
       <img
-        src="/images/3.jpg"
+        src={`${img}`}
         style={{ width: "100%" }}
         alt="It's about how the product is look like"
       />
       <div className="card-details">
-        <h4>Title</h4>
-        <p>From: {props.owner}</p>
-        <p>LKR: {props.price}</p>
-        <button className="btn-buy">
+        <h4>
+          {title}
+          <br />
+          <label>{category}</label>
+        </h4>
+        <p>From: {owner}</p>
+        <p>LKR: {price}</p>
+        <button className="btn-card btn-buy">
           <i className="fas fa-shopping-bag"></i> Buy now
+        </button>
+        <button
+          className="btn-card btn-cart"
+          onClick={() => {
+            addToCart({ id, img, title, category, owner, price, units: 1 });
+          }}
+        >
+          <i className="fas fa-shopping-cart"></i> Add to cart
         </button>
       </div>
     </article>

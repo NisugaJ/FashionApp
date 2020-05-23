@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import TableRow from './TableRowManager';
 import PureProgressSpinner from "../../../components/PureProgressSpinner";
+import backend_config from '../../../config/backend_config';
 
-export default class Index extends Component {
+export default class ManagersIndex extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +16,7 @@ export default class Index extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:3000/store_managers/')
+        axios.get(backend_config.baseURL + 'store_managers/')
             .then(response => {
                 this.setState({ store_managers: response.data });
             })
@@ -24,7 +25,7 @@ export default class Index extends Component {
             })
     }
 
-   
+
 
 
     tabRow() {
@@ -42,7 +43,7 @@ export default class Index extends Component {
 
         return (
             <div>
-                <h3 align="center">Store manager list</h3>
+                <h3 align="center">All Store Managers</h3>
                 <table className="table table-striped" style={{ marginTop: 20 }}>
                     <thead>
                         <tr>

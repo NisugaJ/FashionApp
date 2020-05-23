@@ -3,27 +3,26 @@ import "./admin.scss";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import NavBtn from "./navBtn";
 import dashboard from "./dashboard";
-import managerAdd from "./manager/addmanager"
 import Contacts from "./contacts";
-import managerView from "./manager/viewManager";
 import managerEdit from './manager/editManager';
-import categotyAdd from "./category/addCategory";
-import categoryView from "./category/viewCategory";
 import categoryEdit from './category/editCategory';
 
 import LogoImage from "../../components/logo_image";
 import { Button } from "@material-ui/core";
+import ManagersTabPanel from "./manager/managersTab";
+import CategoriesTabPanel from "./category/categoriesTabPanel";
+import UserManager from "./users/ManageUsers";
 
 
 class SideBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeArray: [0, 0, 0,0,0,0], name: "" };
+    this.state = { activeArray: [0, 0, 0, 0, 0, 0], name: "" };
     this.clickHandler = this.clickHandler.bind(this);
   }
 
   clickHandler(id, name) {
-    var arr = [0, 0, 0,0,0,0];
+    var arr = [0, 0, 0, 0, 0, 0];
     arr[id] = 1;
     this.setState({ activeArray: arr, name: name });
   }
@@ -52,36 +51,29 @@ class SideBar extends Component {
                   name="Dashboard"
                 />
               </Link>
-              <Link to={"/dashboard/addManager"} style={{ textDecoration: "none" }}>
+              <Link to={"/dashboard/customers"} style={{ textDecoration: "none" }}>
                 <NavBtn
                   id={1}
                   active={this.state.activeArray[1]}
                   clickHandler={this.clickHandler}
-                  name="Manager"
+                  name="Customers"
                 />
               </Link>
-              <Link to={"/dashboard/viewManager"} style={{ textDecoration: "none" }}>
+              <Link to={"/dashboard/managers"} style={{ textDecoration: "none" }}>
                 <NavBtn
                   id={2}
                   active={this.state.activeArray[2]}
                   clickHandler={this.clickHandler}
-                  name="View Manager"
+                  name="Managers"
                 />
               </Link>
-              <Link to={"/dashboard/addCategory"} style={{ textDecoration: "none" }}>
+
+              <Link to={"/dashboard/categories"} style={{ textDecoration: "none" }}>
                 <NavBtn
                   id={3}
                   active={this.state.activeArray[3]}
                   clickHandler={this.clickHandler}
-                  name="Add category"
-                />
-              </Link>
-              <Link to={"/dashboard/viewCategory"} style={{ textDecoration: "none" }}>
-                <NavBtn
-                  id={4}
-                  active={this.state.activeArray[4]}
-                  clickHandler={this.clickHandler}
-                  name="View category"
+                  name="Categories"
                 />
               </Link>
               <Link to={"/dashboard/contact"} style={{ textDecoration: "none" }}>
@@ -92,17 +84,16 @@ class SideBar extends Component {
                   name="Contacts"
                 />
               </Link>
-              
+
             </div>
           </div>
           <div id="sideContent">
             <Switch>
               <Route exact path="/dashboard" component={dashboard} />
-              <Route path="/dashboard/addManager" component={managerAdd} />
-              <Route path="/dashboard/viewManager" component={managerView} />
+              <Route path="/dashboard/customers" component={UserManager} />
+              <Route path="/dashboard/managers" component={ManagersTabPanel} />
               <Route path='/dashboard/edit/:id' component={managerEdit} />
-              <Route path="/dashboard/addCategory" component={categotyAdd} />
-              <Route path="/dashboard/viewCategory" component={categoryView} />
+              <Route path="/dashboard/categories" component={CategoriesTabPanel} />
               <Route path='/dashboard/editCategory/:id' component={categoryEdit} />
               <Route path="/dashboard/contact" component={Contacts} />
             </Switch>
