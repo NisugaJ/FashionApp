@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import TableRow from './TableRowCategory';
 import PureProgressSpinner from "../../../components/PureProgressSpinner";
+import backend_config from '../../../config/backend_config';
 
-export default class Index extends Component {
+export default class IndexCategories extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +16,7 @@ export default class Index extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:3000/categories')
+        axios.get(backend_config.baseURL + 'categories')
             .then(response => {
                 this.setState({ categories: response.data });
             })
@@ -23,7 +24,7 @@ export default class Index extends Component {
                 console.log(error);
             })
 
-        
+
 
     }
 
