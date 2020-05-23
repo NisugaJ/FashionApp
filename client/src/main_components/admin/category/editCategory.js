@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
+import backend_config from '../../../config/backend_config';
 
 export default class Edit extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ export default class Edit extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:3000/categories/edit/' + this.props.match.params.id)
+        axios.get(backend_config.baseURL + "categories/edit/" + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     name: response.data.name,
@@ -52,7 +53,7 @@ export default class Edit extends Component {
         };
 
 
-        axios.post('http://localhost:3000/categories/update/' + this.props.match.params.id, obj)
+        axios.post(backend_config.baseURL + 'categories/update/' + this.props.match.params.id, obj)
             .then(res => console.log(res.data));
 
         //push after the update to view page

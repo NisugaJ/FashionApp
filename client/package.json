@@ -1,5 +1,5 @@
 {
-  "name": "oip_react",
+  "name": "af_fashion_store_react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -31,14 +31,17 @@
     "react-scripts": "^3.4.0",
     "recharts": "^2.0.0-beta.1",
     "redux": "^4.0.5",
+    "serve": "^11.3.1",
     "styled-components": "^4.4.1",
-    "sweetalert2": "^9.13.1"
+    "sweetalert2": "^9.13.1",
+    "alertifyjs": "^1.13.1"
   },
   "scripts": {
     "start": "SET PORT=8000 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve": "serve -s build -l 8000"
   },
   "eslintConfig": {
     "extends": "react-app"

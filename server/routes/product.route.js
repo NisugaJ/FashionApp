@@ -2,19 +2,25 @@ const express = require("express");
 const productRoutes = express.Router();
 const productController = require("../controllers/ProductController");
 
-//get all products route
-productRoutes.route("/all").get(productController.getAllProducts);
+//GET all products route
+productRoutes.route("/").get(productController.getAllProducts);
 
-//get product by ID
+//GET product by ID
 productRoutes.route('/:id').get(productController.getProductById);
 
-//add new product
+//ADD new product
 productRoutes.route('/add').post(productController.addProduct);
 
-//update product by ID
-//productRoutes.route('/update/:id').post(productController.updateProductById);
+//UPDATE product by ID
+productRoutes.route('/update/:id').post(productController.updateProductById);
 
 //DELETE product my id
-productRoutes.route("/delete/:id").delete(productController.deleteProduct);
+productRoutes.route("/deleteProduct/:id").get(productController.deleteProduct);
+
+//VIEW only one product
+productRoutes.route("/oneProduct/:id").post(productController.viewOneProduct);
+
+//UPLOAD image - Using the cloudinary widget, so this won't be used, incase widget doesn't work the back end is here.
+productRoutes.route("/upload").post(productController.uploadImage);
 
 module.exports = productRoutes;
