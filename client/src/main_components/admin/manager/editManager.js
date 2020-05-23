@@ -11,7 +11,7 @@ export default class Edit extends Component {
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
-        
+
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -20,7 +20,7 @@ export default class Edit extends Component {
             username: '',
             password: '',
             email: ''
-            
+
         }
     }
 
@@ -34,7 +34,7 @@ export default class Edit extends Component {
                     username: response.data.username,
                     password: response.data.password,
                     email: response.data.email,
-                    
+
                 });
             }).catch(function (error) {
                 console.log(error);
@@ -76,58 +76,58 @@ export default class Edit extends Component {
             username: this.state.username,
             password: this.state.password,
             email: this.state.email,
-            
+
         };
 
 
         axios.post('http://localhost:3000/store_managers/update/' + this.props.match.params.id, obj)
-            .then(res => console.log(res.data)); 
-            
-            //push after the update to view page
-            this.props.history.push('/dashboard/viewManager');
+            .then(res => console.log(res.data));
+
+        //push after the update to view page
+        this.props.history.push('/dashboard/viewManager');
     }
 
 
     render() {
         return (
             <div style={{ marginTop: 10 }}>
-                
+
                 <div className="row justify-content-center">
                     <div className="col-6">
-                    <h3>Add New Manager</h3>
-                    <form onSubmit={this.onSubmit} method="POST" action="send">
-                    <div className="form-group">
-                        <label>First Name :  </label>
-                        <input type="text" className="form-control" value={this.state.first_name} onChange={this.onChangeFirstName} />
-                    </div>
-                    <div className="form-group">
-                        <label>Last Name: </label>
-                        <input type="text" className="form-control" value={this.state.last_name} onChange={this.onChangeLastName} />
-                    </div>
-                    <div className="form-group">
-                        <label>Username: </label>
-                        <input type="text" className="form-control" value={this.state.username} onChange={this.onChangeUsername} />
-                    </div>
-                    <div className="form-group">
-                        <label>Password: </label>
-                        <input type="text" className="form-control"  value={this.state.password} onChange={this.onChangePassword} />
-                    </div>
-                    <div className="form-group">
-                        <label>Email: </label>
-                        <input type="email" className="form-control" name="email" value={this.state.email} onChange={this.onChangeEmail} />
-                    </div>
-                    {/* <div className="form-group">
+                        <h3>Add New Manager</h3>
+                        <form onSubmit={this.onSubmit} method="POST" action="send">
+                            <div className="form-group">
+                                <label>First Name :  </label>
+                                <input type="text" className="form-control" value={this.state.first_name} onChange={this.onChangeFirstName} />
+                            </div>
+                            <div className="form-group">
+                                <label>Last Name: </label>
+                                <input type="text" className="form-control" value={this.state.last_name} onChange={this.onChangeLastName} />
+                            </div>
+                            <div className="form-group">
+                                <label>Username: </label>
+                                <input type="text" className="form-control" value={this.state.username} onChange={this.onChangeUsername} />
+                            </div>
+                            <div className="form-group">
+                                <label>Password: </label>
+                                <input type="text" className="form-control" value={this.state.password} onChange={this.onChangePassword} />
+                            </div>
+                            <div className="form-group">
+                                <label>Email: </label>
+                                <input type="email" className="form-control" name="email" value={this.state.email} onChange={this.onChangeEmail} />
+                            </div>
+                            {/* <div className="form-group">
                         <label>Access Level: </label>
                         <input type="text" className="form-control"  value={this.state.access_token} onChange={this.onChangeAccessToken} />
                     </div> */}
-                    <div className="form-group">
-                        <input type="submit" value="Update Managager" className="btn btn-primary" />
-                    </div>
-                </form>
+                            <div className="form-group">
+                                <input type="submit" value="Update Manager" className="btn btn-primary" />
+                            </div>
+                        </form>
                     </div>
                 </div>
-                
-                
+
+
             </div>
         )
     }

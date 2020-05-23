@@ -4,8 +4,7 @@ const isLogged = () => {
   } else {
     console.log("app is running on the server")
   }
-  // return sessionStorage.getItem("user") &&
-  //   sessionStorage.getItem("access_token")
+  // return sessionStorage.getItem("user")
   //   ? true
   //   : false
 
@@ -15,20 +14,23 @@ const isLogged = () => {
 
 const logOut = () => {
   console.log("Clearingggg")
-  sessionStorage.clear()
-  // sessionStorage.setItem("user", "")
-  // sessionStorage.setItem("access_token", "")
+  sessionStorage.removeItem("user")
   return isLogged()
 }
 
 const getLoggedInUserType = () => {
   //get user object from sessionStorage
+
+  // const user = JSON.parse(sessionStorage.getItem("user"))
+  // console.log("inside usertype", user);
+
   const user = {
     type: 'ADMIN',
     // type: 'STORE_MANAGER',
     // type: 'CUSTOMER'
   }
-
+  // if (user.userType === null)
+  //   return user.userType || null
   return user.type
 }
 

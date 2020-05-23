@@ -11,15 +11,10 @@ createUser = (req, res) => {
     }
 
     const user = new User(body)
-
-    user.validate(err => {
-        if (err)
-            res.status(200).json({ success: false, error: err })
-    })
-
+    console.log(body);
     user.save()
         .then(() => {
-            return res.status(201).json({
+            return res.status(200).json({
                 success: true,
                 data: {
                     id: user._id,
