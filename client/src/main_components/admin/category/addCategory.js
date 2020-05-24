@@ -45,7 +45,7 @@ export default class CreateCategory extends Component {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Added Cateory Successfully',
+                    title: 'Added Category Successfully',
                     showConfirmButton: false,
 
                 })

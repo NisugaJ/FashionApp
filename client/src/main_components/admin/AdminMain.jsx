@@ -6,12 +6,13 @@ import dashboard from "./dashboard";
 import Contacts from "./contacts";
 import managerEdit from './manager/editManager';
 import categoryEdit from './category/editCategory';
-
+import { Link as MLink } from "@material-ui/core";
 import LogoImage from "../../components/logo_image";
-import { Button } from "@material-ui/core";
+import { Button, MenuItem } from "@material-ui/core";
 import ManagersTabPanel from "./manager/managersTab";
 import CategoriesTabPanel from "./category/categoriesTabPanel";
 import UserManager from "./users/ManageUsers";
+import { logOut } from "../../components/auth";
 
 
 class SideBar extends Component {
@@ -85,6 +86,16 @@ class SideBar extends Component {
                 />
               </Link>
 
+              <MLink
+                color="textPrimary"
+                href="/dashboard"
+                style={{ textDecoration: "none" }}
+                onClick={() => {
+                  logOut()
+                }}
+              >
+                <MenuItem>Logout</MenuItem>
+              </MLink>
             </div>
           </div>
           <div id="sideContent">
