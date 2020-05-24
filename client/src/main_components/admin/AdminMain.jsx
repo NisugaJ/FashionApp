@@ -14,6 +14,7 @@ import CategoriesTabPanel from "./category/categoriesTabPanel";
 import UserManager from "./users/ManageUsers";
 import test from "./Test/test";
 import { logOut } from "../../components/auth";
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 
 
 class SideBar extends Component {
@@ -96,14 +97,14 @@ class SideBar extends Component {
               </Link>
 
               <MLink
-                color="textPrimary"
                 href="/dashboard"
-                style={{ textDecoration: "none" }}
+                className="py-1 my-3"
+                style={{ textDecoration: "none",color:  "#F2BC18",backgroundColor:  "#333"  }}
                 onClick={() => {
                   logOut()
                 }}
               >
-                <MenuItem>Logout</MenuItem>
+                <MenuItem><b>Logout</b> <PowerSettingsNewIcon/></MenuItem>
               </MLink>
             </div>
           </div>
