@@ -1,4 +1,7 @@
 import React from "react";
+import baseAxios from "../../config/axios";
+import { getUserId } from "../../components/auth";
+const Swal = require('sweetalert2');
 
 //cards in special items
 export const card_article = ({
@@ -10,6 +13,29 @@ export const card_article = ({
   category,
   addToCart,
 }) => {
+
+  const addToWishList = () => {
+    baseAxios.post('user/addToWishList', { productId: id, userId: getUserId() })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Submitted")
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Added ' + title + ' to Wishlist',
+          })
+        }
+
+      }).catch((error) => {
+        console.log(error);
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Failed to add' + title + ' to Wishlist',
+        })
+      })
+  }
+
   return (
     <article className="card">
       <img
@@ -35,6 +61,14 @@ export const card_article = ({
           }}
         >
           <i className="fas fa-shopping-cart"></i> Add to cart
+        </button>
+        <button
+          className="btn-card btn-wishlist"
+          onClick={() => {
+            addToWishList();
+          }}
+        >
+          <i class="fas fa-list"></i> Add to wishlist
         </button>
       </div>
     </article>

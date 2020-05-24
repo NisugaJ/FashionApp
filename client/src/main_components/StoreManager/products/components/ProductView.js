@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import backend_config from "../../../../config/backend_config"
-import axios from 'axios';
+import baseAxios from '../../../../config/axios';
 
 export default class Product extends Component {
 
@@ -15,7 +14,7 @@ export default class Product extends Component {
             image_path: '',
             category_id: '',
 
-            discount_percentage:'',
+            discount_percentage: '',
             discount_info: '',
 
             ratings: [],
@@ -23,7 +22,7 @@ export default class Product extends Component {
     }
 
     componentDidMount() {
-        axios.get(backend_config.baseURL + 'product/'+this.props.match.params.id)
+        baseAxios.get('product/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     name: response.data.name,
@@ -37,7 +36,7 @@ export default class Product extends Component {
                     discount_info: response.data.discount_info,
 
                     //ratings: response.data.ratings[0],
-                })   
+                })
             })
             .catch(function (error) {
                 console.log(error);
@@ -47,24 +46,24 @@ export default class Product extends Component {
     render() {
         return (
             <div className="container">
-	
+
                 <h2 className="d-flex justify-content-center">{this.state.name}</h2>
-            
+
                 <div className="row">
-                
+
                     <div className="col-sm">
-                    
+
                         <div className="d-flex justify-content-center">Image may differ from actual product*</div>
-                        <br/>
+                        <br />
                         <div className="d-flex justify-content-center">
                             <img src={this.state.image_path} alt={this.state.name} height="300px" width="500px"></img>
                         </div>
                     </div>
-                    
+
                     <div className="col-sm">
-                    
+
                         <div className="d-flex justify-content-center"></div>
-                        <br/>
+                        <br />
                         <div className="form-group row">
                             <label htmlFor="description" className="">
                                 Description: {this.state.description}
@@ -95,7 +94,7 @@ export default class Product extends Component {
                                 Discount Info: {this.state.discount_info}
                             </label>
                         </div>
-                        
+
                         <div className="row">
                             <div className="col-sm form-group row">
                                 <select id="qty">
