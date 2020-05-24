@@ -34,7 +34,7 @@ export default class ManagersIndex extends Component {
     }
 
     onResetArray = () => {
-        axios.get(backend_config.baseURL + 'store_managers/')
+        baseAxios.get('store_managers/')
             .then(response => {
                 this.setState({ store_managers: response.data });
             })
