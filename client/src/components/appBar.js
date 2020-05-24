@@ -18,7 +18,7 @@ import {
 } from "@material-ui/core"
 import Button from "../components/button"
 import Image from "./logo_image"
-import { logOut } from "./auth"
+import { logOut, getUserFirstName } from "./auth"
 import { AuthConsumer } from "../config/authContext"
 
 const useStyles = makeStyles(theme => ({
@@ -99,6 +99,7 @@ const TopAppBar = ({ siteTitle, isLoggedIn }) => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+
       {isLoggedIn ? (
         <div>
           <Link
@@ -158,6 +159,9 @@ const TopAppBar = ({ siteTitle, isLoggedIn }) => {
           <div className={classes.grow} />
 
           <div className={classes.sectionDesktop}>
+            <Typography variant="h5" component="label" style={{ fontWeight: "bold", marginTop: "0.3rem", marginRight: "1rem", color: "black" }}>
+              {getUserFirstName()}
+            </Typography>
             <AuthConsumer>
               {isLoggedIn ? (
                 <ButtonGroup

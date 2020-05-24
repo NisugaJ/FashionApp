@@ -26,10 +26,10 @@ function getSteps() {
   return ['Review Order', 'Add Details', 'Confirm Payment'];
 }
 
-function getStepContent(stepIndex) {
+function getStepContent(stepIndex, orderedItems) {
   switch (stepIndex) {
     case 0:
-      return <ReviewOrder />;
+      return <ReviewOrder items={orderedItems} />;
     case 1:
       return <AddDetails />;
     case 2:
@@ -73,7 +73,7 @@ export default function OrderNowStepIndex({ orderItems }) {
           </div>
         ) : (
             <div>
-              <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+              <Typography className={classes.instructions}>{getStepContent(activeStep, orderItems)}</Typography>
               <div>
                 <Button
                   disabled={activeStep === 0}
@@ -81,7 +81,6 @@ export default function OrderNowStepIndex({ orderItems }) {
                   className={classes.backButton}
                 >
                   Back
-                  {JSON.stringify(orderItems)}
                 </Button>
                 <Button variant="contained" color="primary" onClick={handleNext}>
                   {activeStep === steps.length - 1 ? 'Finish' : 'Next'}

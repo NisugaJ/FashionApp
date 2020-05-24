@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import BaseAxios from "../config/axios"
 import { isLogged } from "./auth"
-
+const sweetAlert = require("sweetalert2")
 const MSG = styled.div`
   background-color: #ff9494;
   outline: 0;
@@ -75,10 +75,22 @@ const UserLogin = () => {
         setIsLoggedIn(true)
         console.log("Login Successfull")
       } else {
-        if ((data.loginStatus = false)) console.log("Login Failed")
-        console.log(!data.loginStatus)
+        sweetAlert.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Login Failed',
+          showConfirmButton: false,
+        })
         setInvalidLogin(true)
       }
+    }).catch(err => {
+      sweetAlert.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Login Failed',
+        showConfirmButton: false,
+      })
+      setInvalidLogin(true)
     })
   }
 

@@ -18,7 +18,7 @@ import Contact from "./contact";
 import Shop from "../Products/porducts";
 import CartList from "../Cart/cartList";
 
-import { isLogged } from "../../components/auth";
+import { isLogged, getUserFirstName } from "../../components/auth";
 import Image from "../../components/logo_image";
 import { Typography, Badge } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
@@ -128,8 +128,12 @@ const NavBar = () => {
                   <ShoppingCart fontSize="large" />
                 </Badge>
                 {/* </IconButton> */}
+                <Typography></Typography>
               </li>
             </Link>
+            <Typography variant="h5" component="label" style={{ marginTop: "1.5rem", color: "#f2bc18" }}>
+              {getUserFirstName()}
+            </Typography>
           </ul>
         </div>
       </div>

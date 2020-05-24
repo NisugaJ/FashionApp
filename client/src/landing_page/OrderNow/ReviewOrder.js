@@ -1,9 +1,13 @@
 import React from 'react';
+import { Container } from '@material-ui/core';
 
-const ReviewOrder = () => {
+const ReviewOrder = ({ items }) => {
     return (
         <div>
-            Juuuuu
+            <Container maxWidth={500}>
+                {JSON.stringify(items)}
+
+            </Container>
         </div>
     )
 }

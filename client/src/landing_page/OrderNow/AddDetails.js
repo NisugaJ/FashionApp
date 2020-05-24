@@ -3,7 +3,7 @@ import React from 'react';
 const AddDetails = () => {
     return (
         <div>
-            22
+            asda
         </div>
     )
 }

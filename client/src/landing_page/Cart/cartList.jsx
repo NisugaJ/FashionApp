@@ -15,6 +15,8 @@ import { bindActionCreators } from "redux";
 import "./cart.scss";
 import { Button } from "@material-ui/core";
 import OrderNowStepIndex from "../OrderNow/OrderNowStepsIndex";
+import { isLogged, getLoggedInUserType } from "../../components/auth";
+const sweetAlert = require("sweetalert2")
 
 class CartList extends Component {
   constructor(props) {
@@ -64,9 +66,20 @@ class CartList extends Component {
               plusQty={this.plusQty.bind(this)}
             />
           ))}
-          <Button variant="contained" style={{ fontSize: 18 }} color="primary" onClick={this.handleClickOpen}>
+          <Button variant="contained" style={{ fontSize: 18 }} color="primary" onClick={() => {
+            if (isLogged() && getLoggedInUserType() === 'CUSTOMER')
+              this.handleClickOpen()
+            else {
+              sweetAlert.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'You must be a logged in Customer to order products',
+                showConfirmButton: false,
+              })
+            }
+          }}>
             Order Now
-      </Button>
+              </Button>
           <Dialog maxWidth={"lg"} open={this.state.dialogOpen} onClose={this.handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">Order Now</DialogTitle>
             <DialogContent>
@@ -78,7 +91,7 @@ class CartList extends Component {
           </Dialog>
         </ul>
 
-      </div>
+      </div >
     );
   }
 }

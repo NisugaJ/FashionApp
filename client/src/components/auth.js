@@ -73,11 +73,23 @@ const getUserId = () => {
   return null
 }
 
+const getUserFirstName = () => {
+  const user = JSON.parse(sessionStorage.getItem("user") || null)
+  console.log(user);
+
+  if (user) {
+    var uData = user.user
+    return uData.first_name
+  }
+  return null
+}
+
 export {
   isLogged,
   logOut,
   getLoggedInUserType,
   getAccessToken,
   getUserData,
-  getUserId
+  getUserId,
+  getUserFirstName
 }
