@@ -1,4 +1,5 @@
 let Product = require("../models/Product");
+let Rating = require("../models/Product");
 
 //GET all products
 const getAllProducts = function (req, res) {
@@ -82,6 +83,24 @@ const uploadImage = function(req, res, next){
     });
 }
 
+//ADD review
+const addReview = function(req, res) {
+    Product.findById(req.params.id, function(err, product,rating) {
+        if (!product)
+            res.status(404).send("data is not found");
+        else
+            rating.comment = req.body.comment;
+            rating.value = req.body.value;
+
+            product.save().then(product => {
+                res.json('Product updated!');
+            })
+            .catch(err => {
+                res.status(400).send("Update not possible");
+            });
+    });
+}
+
 module.exports = {
     getAllProducts,
     getProductById,
@@ -89,5 +108,6 @@ module.exports = {
     updateProductById,
     deleteProduct,
     viewOneProduct,
-    uploadImage
+    uploadImage,
+    addReview
 };

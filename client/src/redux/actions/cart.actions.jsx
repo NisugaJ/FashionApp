@@ -4,58 +4,58 @@ export const MIN_QTY = "MIN_QTY";
 export const PLUS_QTY = "PLUS_QTY";
 
 export const addToCartAction = ({
-  id,
-  img,
-  title,
-  category,
+  _id,
+  image_path,
+  name,
+  category_id,
   owner,
   price,
-  units,
+  qty,
 }) => {
   return {
     type: ADD_TO_CART,
-    payload: { id, img, title, category, owner, price, units },
+    payload: { _id, image_path, name, category_id, owner, price, qty },
   };
 };
 export const minQtyCartAction = ({
-  id,
-  img,
-  title,
-  category,
+  _id,
+  image_path,
+  name,
+  category_id,
   owner,
   price,
-  units,
+  qty,
 }) => {
   return {
     type: MIN_QTY,
-    payload: { id, img, title, category, owner, price, units },
+    payload: { _id, image_path, name, category_id, owner, price, qty },
   };
 };
 export const plusQtyCartAction = ({
-  id,
-  img,
-  title,
-  category,
+  _id,
+  image_path,
+  name,
+  category_id,
   owner,
   price,
-  units,
+  qty,
 }) => {
   return {
     type: PLUS_QTY,
-    payload: { id, img, title, category, owner, price, units },
+    payload: { _id, image_path, name, category_id, owner, price, qty },
   };
 };
 export const delFromCartAction = ({
-  id,
-  img,
-  title,
-  category,
+  _id,
+  image_path,
+  name,
+  category_id,
   owner,
   price,
-  units,
+  qty,
 }) => {
   return {
     type: DEL_FROM_CART,
-    payload: { id, img, title, category, owner, price, units },
+    payload: { _id, image_path, name, category_id, owner, price, qty },
   };
 };

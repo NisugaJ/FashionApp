@@ -3,15 +3,20 @@ import ProductRow from './ProductRow';
 import axios from 'axios';
 import backend_config from "../../../../config/backend_config"
 export default class ProductList extends Component {
+    
     constructor(props) {
         super(props);
-        this.state = {products: []};
+        this.state = {
+            products: [],
+        };
     }
 
     componentDidMount() {
         axios.get(backend_config.baseURL + 'product')
             .then(response => {
-                this.setState({ products: response.data });
+                this.setState({
+                    products: response.data,
+                });
             })
             .catch(function (error){
                 console.log(error);

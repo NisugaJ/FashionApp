@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
 import backend_config from "../../../../config/backend_config"
 
 export default class ProductInput extends Component {
@@ -29,7 +28,19 @@ export default class ProductInput extends Component {
             discount_info: '',
 
             default_img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTb2uP4V6vxSK235Y88V8C8nQSoe13BnzWzs_VIzNLW2ppA1KeN&usqp=CAU',
+
+            categories: [],
         }
+    }
+
+    componentDidMount() {
+        axios.get(backend_config.baseURL + 'categories')
+            .then(response => {
+                this.setState({ categories: response.data });
+            })
+            .catch(function (error){
+                console.log(error);
+            })
     }
 
     onChangeProductName(e) {
@@ -189,7 +200,9 @@ export default class ProductInput extends Component {
                     <div className="form-group row">
                         <label htmlFor="productCategory" className="col-sm-2 col-form-label">Product Category </label>
                         <div className="col-sm-10">
-                            <input type="text" value={this.state.category_id} onChange={this.onChangeProductCategory}/>
+                            <select onChange={this.onChangeProductCategory}>
+                                {this.state.categories.map((i) => (<option key={i._id} {...i}>{i.name}</option>))}
+                            </select>
                         </div>
                     </div>
 
