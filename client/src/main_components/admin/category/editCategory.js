@@ -57,7 +57,7 @@ export default class Edit extends Component {
             .then(res => console.log(res.data));
 
         //push after the update to view page
-        this.props.history.push('/dashboard/viewCategory');
+        this.props.history.push('/dashboard/categories');
     }
 
 
@@ -79,7 +79,7 @@ export default class Edit extends Component {
                             </div>
 
                             <div className="form-group">
-                                <input type="submit" value="Update Category" className="btn btn-primary" />
+                                <input type="submit" value="Update Category" className="btn btn-success" />
                             </div>
                         </form>
                     </div>

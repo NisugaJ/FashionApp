@@ -122,7 +122,7 @@ export default class Edit extends Component {
                         <input type="text" className="form-control"  value={this.state.access_token} onChange={this.onChangeAccessToken} />
                     </div> */}
                             <div className="form-group">
-                                <input type="submit" value="Update Manager" className="btn btn-primary" />
+                                <input type="submit" value="Update Manager" className="btn btn-success" />
                             </div>
                         </form>
                     </div>
