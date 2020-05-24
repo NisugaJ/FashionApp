@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import backend_config from '../../../config/backend_config';
+import baseAxios from '../../../config/axios';
 // import apis from '../../../api';
 const Swal = require('sweetalert2');
 
@@ -45,13 +44,13 @@ export default class CreateCategory extends Component {
                 icon: 'error',
                 title: 'Fill all the fields',
                 showConfirmButton: false,
-        
+
 
             })
 
             console.log('error');
         } else {
-                axios.post(backend_config.baseURL + 'categories/add', obj)
+            axios.post(backend_config.baseURL + 'categories/add', obj)
                 .then(
                     res => console.log(res.data),
                     Swal.fire({
@@ -62,7 +61,7 @@ export default class CreateCategory extends Component {
 
                     })
                 );
-          
+
         }
 
         this.setState({

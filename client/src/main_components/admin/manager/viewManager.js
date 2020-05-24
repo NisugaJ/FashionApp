@@ -1,10 +1,9 @@
 // index.component.js
 
 import React, { Component } from 'react';
-import axios from 'axios';
 import TableRow from './TableRowManager';
 import PureProgressSpinner from "../../../components/PureProgressSpinner";
-import backend_config from '../../../config/backend_config';
+import baseAxios from '../../../config/axios';
 
 export default class ManagersIndex extends Component {
     constructor(props) {
@@ -16,7 +15,7 @@ export default class ManagersIndex extends Component {
 
 
     componentDidMount() {
-        axios.get(backend_config.baseURL + 'store_managers/')
+        baseAxios.get('store_managers/')
             .then(response => {
                 this.setState({ store_managers: response.data });
             })

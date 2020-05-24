@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import backend_config from '../../../config/backend_config';
+import baseAxios from '../../../config/axios';
 // import apis from '../../../api';
 const Swal = require('sweetalert2');
 
@@ -83,7 +82,7 @@ export default class CreateManager extends Component {
                     })
                 );
 
-              
+
         }
 
         this.setState({

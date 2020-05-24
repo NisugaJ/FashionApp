@@ -1,8 +1,7 @@
 // edit.component.js
 
 import React, { Component } from 'react';
-import axios from 'axios';
-import backend_config from '../../../config/backend_config';
+import baseAxios from '../../../config/axios';
 
 export default class Edit extends Component {
     constructor(props) {
@@ -27,7 +26,7 @@ export default class Edit extends Component {
 
 
     componentDidMount() {
-        axios.get(backend_config.baseURL + 'store_managers/edit/' + this.props.match.params.id)
+        baseAxios.get('store_managers/edit/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     first_name: response.data.first_name,
@@ -81,7 +80,7 @@ export default class Edit extends Component {
         };
 
 
-        axios.post(backend_config.baseURL + 'store_managers/update/' + this.props.match.params.id, obj)
+        baseAxios.post('store_managers/update/' + this.props.match.params.id, obj)
             .then(res => console.log(res.data));
 
         //push after the update to view page
