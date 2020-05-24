@@ -40,7 +40,7 @@ const getLoggedInUserType = () => {
 
 const getAccessToken = () => {
   const user = JSON.parse(sessionStorage.getItem("user") || null)
-  if (user.accessToken) {
+  if (user && user.accessToken) {
     return user.accessToken.toString()
   } else return null
 }
