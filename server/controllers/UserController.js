@@ -102,9 +102,9 @@ addToWishList = async (req, res) => {
     let userId = req.body.userId;
 
     User.findById({ _id: userId }).then((user) => {
-        console.log(user.wishlist);
+        // console.log(user.wishlist);
         user.wishlist.push(productId)
-        console.log(user.wishlist);
+        // console.log(user.wishlist);
         user.save().then(user => {
             res.status(200).json({ success: true, data: user });
 
