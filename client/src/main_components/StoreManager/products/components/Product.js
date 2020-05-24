@@ -26,6 +26,8 @@ export default class Product extends Component {
 
             discount_percentage: '',
             discount_info: '',
+
+            categories: [],
         }
     }
 
@@ -47,6 +49,15 @@ export default class Product extends Component {
             .catch(function (error) {
                 console.log(error);
             })
+
+        baseAxios.get('categories')
+            .then(response => {
+                this.setState({ categories: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+
     }
 
     onChangeProductName(e) {
@@ -184,7 +195,9 @@ export default class Product extends Component {
                     <div className="form-group row">
                         <label htmlFor="productCategory" className="col-sm-2 col-form-label">Product Category </label>
                         <div className="col-sm-10">
-                            <input type="text" value={this.state.category_id} onChange={this.onChangeProductCategory} />
+                            <select onChange={this.onChangeProductCategory}>
+                                {this.state.categories.map((i) => (<option key={i._id} {...i}>{i.name}</option>))}
+                            </select>
                         </div>
                     </div>
 

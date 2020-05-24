@@ -5,24 +5,24 @@ const Swal = require('sweetalert2');
 
 //cards in special items
 export const card_article = ({
-  id,
-  img,
-  title,
+  _id,
+  image_path,
+  name,
   owner,
   price,
-  category,
+  category_id,
   addToCart,
 }) => {
 
   const addToWishList = () => {
-    baseAxios.post('user/addToWishList', { productId: id, userId: getUserId() })
+    baseAxios.post('user/addToWishList', { productId: _id, userId: getUserId() })
       .then((response) => {
         if (response.status === 200) {
           console.log("Submitted")
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Added ' + title + ' to Wishlist',
+            name: 'Added ' + name + ' to Wishlist',
           })
         }
 
@@ -31,7 +31,7 @@ export const card_article = ({
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: 'Failed to add' + title + ' to Wishlist',
+          title: 'Failed to add' + name + ' to Wishlist',
         })
       })
   }
@@ -39,15 +39,15 @@ export const card_article = ({
   return (
     <article className="card">
       <img
-        src={`${img}`}
+        src={`${image_path}`}
         style={{ width: "100%" }}
         alt="It's about how the product is look like"
       />
       <div className="card-details">
         <h4>
-          {title}
+          {name}
           <br />
-          <label>{category}</label>
+          <label>{category_id}</label>
         </h4>
         <p>From: {owner}</p>
         <p>LKR: {price}</p>
@@ -57,7 +57,7 @@ export const card_article = ({
         <button
           className="btn-card btn-cart"
           onClick={() => {
-            addToCart({ id, img, title, category, owner, price, units: 1 });
+            addToCart({ _id, image_path, name, category_id, owner, price, qty: 1 });
           }}
         >
           <i className="fas fa-shopping-cart"></i> Add to cart

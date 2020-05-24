@@ -49,4 +49,4 @@ let Product = new Schema({
     }
 });
 
-module.exports = mongoose.model('Product', Product), mongoose.model('ratings', Ratings)
+module.exports = mongoose.model('Product', Product), mongoose.model('Rating', Ratings)
