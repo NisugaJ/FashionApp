@@ -2,19 +2,23 @@ import React, { useState, useEffect } from "react"
 import MaterialTable from "material-table"
 import PureProgressSpinner from "../../../components/PureProgressSpinner"
 import baseAxios from "../../../config/axios"
-import alertify from 'alertifyjs';
-import { getAccessToken } from "../../../components/auth";
+const Swal = require('sweetalert2');
+
 const UserManager = () => {
     const [loaded, setLoaded] = useState(false)
 
-    const [state, setState] = useState({
+    const [state] = useState({
         columns: [
             { title: 'ID', field: 'id', editable: 'never', hidden: true },
             { title: 'First Name', field: 'first_name' },
             { title: 'Last Name', field: 'last_name' },
-            { title: 'Active', field: 'status', type: 'boolean' },
+            {
+                title: 'Active', field: 'status',
+                lookup: { 1: "Active", 2: "Inactive", 3: "Deleted" }
+            },
             { title: 'Username', field: 'username', editable: 'onAdd' },
-            { title: 'Email', field: 'email', editable: 'onAdd' },
+            { title: 'Password', field: 'password' },
+            { title: 'Email', field: 'email' },
             { title: 'Registered On', field: 'reg_date', editable: 'never' },
         ]
     })
@@ -27,6 +31,7 @@ const UserManager = () => {
                 last_name: "",
                 status: false,
                 username: "",
+                password: "",
                 email: "",
                 reg_date: "",
             }
@@ -35,14 +40,9 @@ const UserManager = () => {
 
     useEffect(() => {
         baseAxios
-            .get("/user/all", {
-                headers: {
-                    "Authorization": "Bearer " + getAccessToken()
-                }
-            })
+            .get("/user/all")
             .then(response => {
                 let data = []
-                console.log(response.data)
                 if (response.data) setLoaded(true)
                 response.data.data.forEach(el => {
                     data.push({
@@ -51,6 +51,7 @@ const UserManager = () => {
                         last_name: el.last_name,
                         status: el.status,
                         username: el.username,
+                        password: el.password,
                         email: el.email,
                         reg_date: new Date(el.reg_date).toLocaleString(),
                     })
@@ -58,7 +59,12 @@ const UserManager = () => {
                 setEntries({ data: data })
             })
             .catch(function (error) {
-                console.log(error)
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Failed to load user data',
+                    showConfirmButton: false,
+                })
             })
     }, [])
 
@@ -72,34 +78,47 @@ const UserManager = () => {
             data={entries.data}
             options={{
                 addRowPosition: "first",
-
             }}
+
             editable={{
                 onRowAdd: (newData) =>
                     new Promise((resolve) => {
                         setTimeout(() => {
                             resolve();
-                            console.log(newData);
 
                             baseAxios
-                                .post("/sensors/create", newData)
+                                .post("user/create", newData)
                                 .then(function (response) {
                                     console.log(response)
-                                    if (response.data.data.fireSensorId) {
-                                        newData.fireSensorId = response.data.data.fireSensorId
-                                        alertify.success("Saved")
+                                    if (response.data.success) {
+                                        newData.id = response.data.data._id
+                                        Swal.fire({
+                                            position: 'center',
+                                            icon: 'success',
+                                            title: 'User Added Successfully',
+                                            showConfirmButton: false,
+                                        })
                                         setEntries(prevState => {
                                             const data = [...prevState.data]
                                             data.push(newData)
                                             return { ...prevState, data }
                                         })
                                     } else {
-                                        alertify.error("Saved")
-
+                                        Swal.fire({
+                                            position: 'center',
+                                            icon: 'error',
+                                            title: 'Failed when adding user',
+                                            showConfirmButton: false,
+                                        })
                                     }
                                 })
                                 .catch(function (error) {
-                                    console.log(error)
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'error',
+                                        title: 'Failed when adding user',
+                                        showConfirmButton: false,
+                                    })
                                 })
                         }, 600)
                     }),
@@ -110,25 +129,40 @@ const UserManager = () => {
                         setTimeout(() => {
                             resolve()
                             baseAxios
-                                .put("/sensors/update/" + oldData.fireSensorId, newData)
+                                .post("user/update/" + oldData.id, newData)
                                 .then(function (response) {
-                                    console.log(response)
-                                    if (response.data.message === 'Sensor Updated') {
-                                        newData.fireSensorId = oldData.fireSensorId
-                                        alertify.success("Updated")
+                                    if (response.data.success) {
+                                        newData.id = oldData.id
 
                                         setEntries(prevState => {
                                             const data = [...prevState.data]
                                             data[data.indexOf(oldData)] = newData
                                             return { ...prevState, data }
                                         })
-                                    } else {
-                                        alertify.error("Couldn't update")
+                                        Swal.fire({
+                                            position: 'center',
+                                            icon: 'success',
+                                            title: 'Updated Successfully',
+                                            showConfirmButton: false,
 
+                                        })
+                                    } else {
+                                        Swal.fire({
+                                            position: 'center',
+                                            icon: 'error',
+                                            title: 'Updated Failed',
+                                            showConfirmButton: false,
+
+                                        })
                                     }
                                 })
                                 .catch(function (error) {
-                                    console.log(error)
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'error',
+                                        title: 'Failed when updating user',
+                                        showConfirmButton: false,
+                                    })
                                 })
                         }, 600)
                     }),
@@ -137,29 +171,43 @@ const UserManager = () => {
                     new Promise(resolve => {
                         setTimeout(() => {
                             resolve()
-                            //deleting from DB
-                            // const data = [...entries.data]
-                            // data.splice(data.indexOf(oldData), 1)
+                            // deleting from DB
+                            const data = [...entries.data]
                             baseAxios
-                                .post("sensors/delete_request", {
-                                    "id": oldData.fireSensorId
+                                .post("user/delete", {
+                                    "id": oldData.id
                                 })
                                 .then(response => {
-                                    if (response.data.message === "Updated Sensor") {
-                                        alertify.success("Delete Request Sent")
+                                    if (response.status === 204) {
+                                        Swal.fire({
+                                            position: 'center',
+                                            icon: 'success',
+                                            title: 'Delete Successfully',
+                                            showConfirmButton: false,
 
-                                        // setEntries({ ...entries, data })
-                                        // setEntries(prevState => {
-                                        //     const data = [...prevState.data]
-                                        //     data.splice(data.indexOf(oldData), 1)
-                                        //     return { ...prevState, data }
-                                        // })
+                                        })
+                                        setEntries({ ...entries, data })
+                                        setEntries(prevState => {
+                                            const data = [...prevState.data]
+                                            data.splice(data.indexOf(oldData), 1)
+                                            return { ...prevState, data }
+                                        })
                                     } else {
-                                        alertify.error("Couldn't Delete")
+                                        Swal.fire({
+                                            position: 'center',
+                                            icon: 'error',
+                                            title: 'Deletion Failed',
+                                            showConfirmButton: false,
+                                        })
                                     }
                                 })
                                 .catch(error => {
-                                    console.log(error)
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'error',
+                                        title: 'Deletion Failed',
+                                        showConfirmButton: false,
+                                    })
                                 })
                         }, 600)
                     })

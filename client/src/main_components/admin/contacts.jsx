@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import Axios from "axios";
 import TableRow from "./contactTableRow";
 import { Typography } from "@material-ui/core";
 import PureProgressSpinner from "../../components/PureProgressSpinner";
-import backend_config from "../../config/backend_config";
+import baseAxios from "../../config/axios";
 
 class Contacts extends Component {
   constructor(props) {
@@ -13,7 +12,7 @@ class Contacts extends Component {
   }
 
   loadContacts() {
-    Axios.get(backend_config.baseURL + "contact/all")
+    baseAxios.get("contact/all")
       .then((response) => {
         this.setState({ contacts: response.data });
       })

@@ -8,6 +8,7 @@ import { addToCartAction } from "../../redux/actions/cart.actions";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import baseAxios from "../../config/axios";
 
 class Products extends Component {
 

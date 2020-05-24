@@ -1,8 +1,7 @@
 // edit.component.js
 
 import React, { Component } from 'react';
-import axios from 'axios';
-import backend_config from '../../../config/backend_config';
+import baseAxios from '../../../config/axios';
 
 export default class Edit extends Component {
     constructor(props) {
@@ -21,7 +20,7 @@ export default class Edit extends Component {
 
 
     componentDidMount() {
-        axios.get(backend_config.baseURL + "categories/edit/" + this.props.match.params.id)
+        baseAxios.get("categories/edit/" + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     name: response.data.name,
@@ -53,11 +52,11 @@ export default class Edit extends Component {
         };
 
 
-        axios.post(backend_config.baseURL + 'categories/update/' + this.props.match.params.id, obj)
+        baseAxios.post('categories/update/' + this.props.match.params.id, obj)
             .then(res => console.log(res.data));
 
         //push after the update to view page
-        this.props.history.push('/dashboard/viewCategory');
+        this.props.history.push('/dashboard/categories');
     }
 
 
@@ -79,7 +78,7 @@ export default class Edit extends Component {
                             </div>
 
                             <div className="form-group">
-                                <input type="submit" value="Update Category" className="btn btn-primary" />
+                                <input type="submit" value="Update Category" className="btn btn-success" />
                             </div>
                         </form>
                     </div>
