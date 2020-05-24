@@ -15,14 +15,14 @@ export const card_article = ({
 }) => {
 
   const addToWishList = () => {
-    baseAxios.post('user/addToWishList', { productId: id, userId: getUserId() })
+    baseAxios.post('user/addToWishList', { productId: _id, userId: getUserId() })
       .then((response) => {
         if (response.status === 200) {
           console.log("Submitted")
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Added ' + title + ' to Wishlist',
+            name: 'Added ' + name + ' to Wishlist',
           })
         }
 
@@ -31,7 +31,7 @@ export const card_article = ({
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: 'Failed to add' + title + ' to Wishlist',
+          title: 'Failed to add' + name + ' to Wishlist',
         })
       })
   }

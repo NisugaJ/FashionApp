@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Card from "./card";
-import { Component } from "react";
 import axios from "axios";
 import backend_config from "../../config/backend_config";
 import { addToCartAction } from "../../redux/actions/cart.actions";
@@ -14,8 +13,8 @@ class specialItems extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {PRODUCTS:[]}
-}
+    this.state = { PRODUCTS: [] }
+  }
 
   addToCart(product) {
     this.props.addToCartAction(product);
@@ -23,17 +22,17 @@ class specialItems extends Component {
 
   componentDidMount() {
     axios.get(backend_config.baseURL + 'product/')
-          .then(response => {
-              this.setState({
-                  PRODUCTS: response.data
-              })
-          })
-          .catch(function (error) {
-              console.log(error);
-          })
+      .then(response => {
+        this.setState({
+          PRODUCTS: response.data
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
   }
 
-  render(){
+  render() {
 
     return (
       <div id="specialItems">
@@ -52,7 +51,7 @@ class specialItems extends Component {
 
   }
 
-  
+
 };
 
 const mapStateToProps = (state) => {

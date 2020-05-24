@@ -50,14 +50,14 @@ export default class Product extends Component {
                 console.log(error);
             })
 
-        axios.get(backend_config.baseURL + 'categories')
+        baseAxios.get('categories')
             .then(response => {
                 this.setState({ categories: response.data });
             })
-            .catch(function (error){
+            .catch(function (error) {
                 console.log(error);
             })
-        
+
     }
 
     onChangeProductName(e) {

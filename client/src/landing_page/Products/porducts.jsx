@@ -8,15 +8,14 @@ import { addToCartAction } from "../../redux/actions/cart.actions";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import baseAxios from "../../config/axios";
 
 class Products extends Component {
 
   constructor(props) {
-        super(props);
+    super(props);
 
-        this.state = {PRODUCTS:[]}
-    }
+    this.state = { PRODUCTS: [] }
+  }
 
   addToCart(product) {
     this.props.addToCartAction(product);
@@ -24,14 +23,14 @@ class Products extends Component {
 
   componentDidMount() {
     axios.get(backend_config.baseURL + 'product/')
-          .then(response => {
-              this.setState({
-                  PRODUCTS: response.data
-              })
-          })
-          .catch(function (error) {
-              console.log(error);
-          })
+      .then(response => {
+        this.setState({
+          PRODUCTS: response.data
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
   }
 
   render() {
