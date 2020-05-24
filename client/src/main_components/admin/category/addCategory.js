@@ -50,7 +50,7 @@ export default class CreateCategory extends Component {
 
             console.log('error');
         } else {
-            axios.post(backend_config.baseURL + 'categories/add', obj)
+            baseAxios.post('categories/add', obj)
                 .then(
                     res => console.log(res.data),
                     Swal.fire({

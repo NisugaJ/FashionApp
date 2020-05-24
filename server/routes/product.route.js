@@ -4,7 +4,7 @@ const productController = require("../controllers/ProductController");
 const Utils = require("../common/CommonUtils")
 const Definitions = require("../definitions/Defs").Definitions
 //GET all products route
-productRoutes.route("/").get(Utils.authenicateToken(Definitions.clientTypes.store_manager), productController.getAllProducts);
+productRoutes.route("/").get(productController.getAllProducts);
 
 //GET product by ID
 productRoutes.route('/:id').get(productController.getProductById);

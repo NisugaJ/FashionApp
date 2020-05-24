@@ -70,7 +70,7 @@ export default class CreateManager extends Component {
 
             console.log('error');
         } else {
-            axios.post(backend_config.baseURL + 'store_managers/add', obj)
+            baseAxios.post('store_managers/add', obj)
                 .then(
                     res => console.log(res.data),
                     Swal.fire({
