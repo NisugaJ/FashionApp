@@ -2,38 +2,38 @@ import React from "react";
 import "./cart.scss";
 
 export const cartItem = ({
-  id,
-  img,
-  title,
+  _id,
+  image_path,
+  name,
   owner,
   price,
-  category,
-  units,
+  category_id,
+  qty,
   delItem,
   plusQty,
   minQty,
 }) => {
   return (
-    <li key={id} className="cartItem">
-      <img src={`${img}`} alt={`${title}`} width="100px" height="100px" />
+    <li key={_id} className="cartItem">
+      <img src={`${image_path}`} alt={`${name}`} width="100px" height="100px" />
       <h4>
-        {title}
+        {name}
         <br />
-        <label>{category}</label>
+        <label>{category_id}</label>
       </h4>
       <ul className="secDetails">
         <li>From : {owner}</li>
         <li>Price : LKR {price}</li>
-        <li>QTY : {units}</li>
+        <li>QTY : {qty}</li>
         <li>
-          <b>Total : LKR {units * price}</b>
+          <b>Total : LKR {price * qty}</b>
         </li>
       </ul>
       <div className="buttons">
         <button
           className="plusBtn"
           onClick={() => {
-            plusQty({ id, img, title, owner, price, category, units });
+            plusQty({ _id, image_path, name, owner, price, category_id, qty });
           }}
         >
           +
@@ -41,7 +41,7 @@ export const cartItem = ({
         <button
           className="minusBtn"
           onClick={() => {
-            minQty({ id, img, title, owner, price, category, units });
+            minQty({ _id, image_path, name, owner, price, category_id, qty });
           }}
         >
           -
@@ -49,7 +49,7 @@ export const cartItem = ({
         <button
           className="closeBtn"
           onClick={() => {
-            delItem({ id, img, title, owner, price, category, units });
+            delItem({ _id, image_path, name, owner, price, category_id, qty });
           }}
         >
           &times;

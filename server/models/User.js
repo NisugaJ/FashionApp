@@ -9,7 +9,7 @@ const User = new Schema(
         username: { type: String, required: true, unique: true },
         password: { type: String, required: true, selected: false },
         email: { type: String, required: true, unique: true },
-        status: { type: Number, default: 1 }, // 1: Active, 0: Not active, 3: Deleted
+        status: { type: String, default: 1 }, // 1: Active, 0: Not active, 3: Deleted
         reg_date: { type: Date, required: true, default: Date.now },
         wishlist: [{ type: mongoose.Types.ObjectId }]
     }
