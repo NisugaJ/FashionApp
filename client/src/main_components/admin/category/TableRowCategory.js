@@ -2,8 +2,7 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import backend_config from '../../../config/backend_config';
+import baseAxios from '../../../config/axios';
 const Swal = require('sweetalert2');
 
 class TableRow extends Component {
@@ -26,7 +25,7 @@ class TableRow extends Component {
         }).then((result) => {
             if (result.value) {
 
-                axios.get(backend_config.baseURL + 'categories/delete/' + this.props.obj._id)
+                baseAxios.get('categories/delete/' + this.props.obj._id)
                     .then(console.log('Deleted'))
                     .catch(err => console.log(err))
 
@@ -46,7 +45,7 @@ class TableRow extends Component {
                 <td>            {this.props.obj.description}</td>
 
 
-                <td><Link to={"/dashboard/editCategory/" + this.props.obj._id} className="btn btn-primary">Edit</Link></td>
+                <td><Link to={"/dashboard/editCategory/" + this.props.obj._id} className="btn btn-success">Edit</Link></td>
                 <td><button onClick={this.delete} className="btn btn-danger">Delete</button></td></tr>
         );
     }

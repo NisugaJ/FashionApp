@@ -1,10 +1,9 @@
 // index.component.js
 
 import React, { Component } from 'react';
-import axios from 'axios';
 import TableRow from './TableRowCategory';
 import PureProgressSpinner from "../../../components/PureProgressSpinner";
-import backend_config from '../../../config/backend_config';
+import baseAxios from '../../../config/axios';
 
 export default class IndexCategories extends Component {
     constructor(props) {
@@ -16,15 +15,13 @@ export default class IndexCategories extends Component {
 
 
     componentDidMount() {
-        axios.get(backend_config.baseURL + 'categories')
+        baseAxios.get('categories')
             .then(response => {
                 this.setState({ categories: response.data });
             })
             .catch(function (error) {
                 console.log(error);
             })
-
-
 
     }
 
@@ -34,6 +31,16 @@ export default class IndexCategories extends Component {
             return <TableRow obj={object} key={i} />;
         });
     }
+
+    onResetArray = () => {
+        baseAxios.get('categories')
+            .then(response => {
+                this.setState({ categories: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    };
 
 
 
@@ -45,6 +52,9 @@ export default class IndexCategories extends Component {
         return (
             <div>
                 <h3 align="center">Category list</h3>
+                <button type="button" className="btn btn-warning mt-3" onClick={this.onResetArray}>
+                    Refresh
+                </button>
                 <table className="table table-striped" style={{ marginTop: 20 }}>
                     <thead>
                         <tr>

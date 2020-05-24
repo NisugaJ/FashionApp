@@ -40,14 +40,44 @@ const getLoggedInUserType = () => {
 
 const getAccessToken = () => {
   const user = JSON.parse(sessionStorage.getItem("user") || null)
-  if (user.accessToken) {
+  if (user && user.accessToken) {
     return user.accessToken.toString()
   } else return null
+}
+
+const getUserData = () => {
+  const user = JSON.parse(sessionStorage.getItem("user") || null)
+  console.log(user);
+
+  if (user) {
+    var uData = user.user
+    let userData = {
+      first_name: uData.first_name,
+      last_name: uData.last_name,
+      username: uData.username,
+      email: uData.email,
+      reg_date: new Date(uData.reg_date).toLocaleString()
+    }
+    return userData
+  }
+}
+
+const getUserId = () => {
+  const user = JSON.parse(sessionStorage.getItem("user") || null)
+  console.log(user);
+
+  if (user) {
+    var uData = user.user
+    return uData._id
+  }
+  return null
 }
 
 export {
   isLogged,
   logOut,
   getLoggedInUserType,
-  getAccessToken
+  getAccessToken,
+  getUserData,
+  getUserId
 }
