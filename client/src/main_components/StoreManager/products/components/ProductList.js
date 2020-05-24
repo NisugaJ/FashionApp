@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import ProductRow from './ProductRow';
 import baseAxios from '../../../../config/axios';
 export default class ProductList extends Component {
+    
     constructor(props) {
         super(props);
-        this.state = { products: [] };
+        this.state = {
+            products: [],
+        };
     }
 
     componentDidMount() {
         baseAxios.get('product')
             .then(response => {
-                this.setState({ products: response.data });
+                this.setState({
+                    products: response.data,
+                });
             })
             .catch(function (error) {
                 console.log(error);
