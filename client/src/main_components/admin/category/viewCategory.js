@@ -23,8 +23,6 @@ export default class IndexCategories extends Component {
                 console.log(error);
             })
 
-
-
     }
 
 
@@ -33,6 +31,16 @@ export default class IndexCategories extends Component {
             return <TableRow obj={object} key={i} />;
         });
     }
+
+    onResetArray = () => {
+        axios.get(backend_config.baseURL + 'categories')
+            .then(response => {
+                this.setState({ categories: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    };
 
 
 
@@ -44,6 +52,9 @@ export default class IndexCategories extends Component {
         return (
             <div>
                 <h3 align="center">Category list</h3>
+                <button type="button" className="btn btn-warning mt-3" onClick={this.onResetArray}>
+                    Refresh
+                </button>
                 <table className="table table-striped" style={{ marginTop: 20 }}>
                     <thead>
                         <tr>
