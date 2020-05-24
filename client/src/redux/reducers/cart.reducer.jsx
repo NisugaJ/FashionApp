@@ -6,15 +6,24 @@ import {
 } from "../actions/cart.actions";
 
 const INITIAL_STATE = [
-  // {
-  //   _id: 4,
-  //   image_path: "/images/3.jpg",
-  //   name: "bags",
-  //   category_id: "clothes",
-  //   owner: "Shimran",
-  //   price: 100,
-  //   qty: 1,
-  // },
+  {
+    _id: 4,
+    image_path: "/images/3.jpg",
+    name: "bags",
+    category_id: "clothes",
+    owner: "Shimran",
+    price: 100,
+    qty: 1,
+  },
+  {
+    _id: 5,
+    image_path: "/images/3.jpg",
+    name: "bags",
+    category_id: "clothes",
+    owner: "Shimran",
+    price: 100,
+    qty: 1,
+  },
 ];
 
 const cartReducer = (state = INITIAL_STATE, action = {}) => {

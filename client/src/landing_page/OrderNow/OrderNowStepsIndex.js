@@ -33,7 +33,7 @@ function getStepContent(stepIndex, orderedItems) {
     case 1:
       return <AddDetails />;
     case 2:
-      return <ConfirmPayment />;
+      return <ConfirmPayment orderItems={orderedItems} />;
     default:
       return 'Unknown stepIndex';
   }
@@ -83,7 +83,7 @@ export default function OrderNowStepIndex({ orderItems }) {
                   Back
                 </Button>
                 <Button variant="contained" color="primary" onClick={handleNext}>
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                  {activeStep === steps.length - 1 ? 'Pay Now' : 'Next'}
                 </Button>
               </div>
             </div>
