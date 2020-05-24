@@ -57,8 +57,8 @@ const searchPayment = (req, res) => {
 
 const deletePayment = (req, res) => {
     Payment.findByIdAndRemove({
-            _id: req.params.id,
-        },
+        _id: req.params.id,
+    },
         (err, payments) => {
             if (err) res.json(err);
             else res.json("Successfully removed");
