@@ -4,7 +4,7 @@ import Loader from "react-loader-spinner"
 const OverlayLoadingSpinner = ({ message }) => {
     return (
         <div className="overlay">
-            <div class="container">
+            <div className="container">
                 <div class="row" style={{
                     margin: "auto",
                     display: "flex",
@@ -28,7 +28,7 @@ const OverlayLoadingSpinner = ({ message }) => {
                         />
                     </div >
                 </div>
-                <div class="row">
+                <div className="row">
                     {message}
                 </div>
             </div>
