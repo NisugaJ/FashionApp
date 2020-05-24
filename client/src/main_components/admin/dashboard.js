@@ -1,8 +1,7 @@
 
 
 import React, { Component } from 'react';
-import axios from 'axios';
-import backend_config from '../../config/backend_config';
+import baseAxios from '../../config/axios';
 
 
 export default class Index extends Component {
@@ -16,7 +15,7 @@ export default class Index extends Component {
 
 
     componentDidMount() {
-        axios.get(backend_config.baseURL + 'store_managers')
+        baseAxios.get('store_managers')
             .then(response => {
                 this.setState({ store_managers: response.data });
             })
@@ -25,7 +24,7 @@ export default class Index extends Component {
             })
 
 
-        axios.get(backend_config.baseURL + 'categories')
+        baseAxios.get('categories')
             .then(response => {
                 this.setState({ categories: response.data });
             })

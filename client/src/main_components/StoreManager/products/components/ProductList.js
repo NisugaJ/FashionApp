@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import ProductRow from './ProductRow';
-import axios from 'axios';
-import backend_config from "../../../../config/backend_config"
+import baseAxios from '../../../../config/axios';
 export default class ProductList extends Component {
     constructor(props) {
         super(props);
-        this.state = {products: []};
+        this.state = { products: [] };
     }
 
     componentDidMount() {
-        axios.get(backend_config.baseURL + 'product')
+        baseAxios.get('product')
             .then(response => {
                 this.setState({ products: response.data });
             })
-            .catch(function (error){
+            .catch(function (error) {
                 console.log(error);
             })
     }
 
     productList() {
-        return this.state.products.map(function(currentProduct, i){
+        return this.state.products.map(function (currentProduct, i) {
             return <ProductRow product={currentProduct} key={i} />;
         })
     }

@@ -1,10 +1,9 @@
 // index.component.js
 
 import React, { Component } from 'react';
-import axios from 'axios';
 import TableRow from './TableRowCategory';
 import PureProgressSpinner from "../../../components/PureProgressSpinner";
-import backend_config from '../../../config/backend_config';
+import baseAxios from '../../../config/axios';
 
 export default class IndexCategories extends Component {
     constructor(props) {
@@ -16,7 +15,7 @@ export default class IndexCategories extends Component {
 
 
     componentDidMount() {
-        axios.get(backend_config.baseURL + 'categories')
+        baseAxios.get('categories')
             .then(response => {
                 this.setState({ categories: response.data });
             })

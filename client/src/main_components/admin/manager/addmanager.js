@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import backend_config from '../../../config/backend_config';
+import baseAxios from '../../../config/axios';
 // import apis from '../../../api';
 const Swal = require('sweetalert2');
 
@@ -61,7 +60,7 @@ export default class CreateManager extends Component {
         };
 
 
-        axios.post(backend_config.baseURL + 'store_managers/add', obj)
+        baseAxios.post('store_managers/add', obj)
             .then(
                 res => console.log(res.data),
                 Swal.fire({
