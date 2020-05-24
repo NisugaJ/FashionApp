@@ -39,11 +39,11 @@ module.exports.authenicateToken = function authenicateToken(userType) {
                     error: `Unauthorized Token`
                 })
             }
-            console.log(userData);
+            // console.log(userData);
             //If permitted userType matches the current userType
-            if (userData.userType === userType) {
+            if (userData.userType === userType && userData.userType !== undefined) {
                 req.user = userData.user
-                //Passing access to the next functions
+                //Passing access to the next DB functions
                 next()
             } else {
                 res.status(403).json({

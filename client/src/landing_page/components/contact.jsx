@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
-import axios from "axios";
-import backend_config from "../../config/backend_config";
+import baseAxios from "../../config/axios";
 
 //form page in contact page
 class contact extends Component {
@@ -41,8 +40,8 @@ class contact extends Component {
       Message: this.state.Message,
     };
 
-    axios
-      .post(backend_config.baseURL + "Contact/add", obj)
+    baseAxios
+      .post("Contact/add", obj)
       .then((res) => console.log(res.data));
 
     this.setState({

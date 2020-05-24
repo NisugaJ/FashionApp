@@ -1,10 +1,9 @@
 // index.component.js
 
 import React, { Component } from 'react';
-import axios from 'axios';
 import TableRow from './TableRowManager';
 import PureProgressSpinner from "../../../components/PureProgressSpinner";
-import backend_config from '../../../config/backend_config';
+import baseAxios from '../../../config/axios';
 
 export default class ManagersIndex extends Component {
     constructor(props) {
@@ -16,7 +15,7 @@ export default class ManagersIndex extends Component {
 
 
     componentDidMount() {
-        axios.get(backend_config.baseURL + 'store_managers/')
+        baseAxios.get('store_managers/')
             .then(response => {
                 this.setState({ store_managers: response.data });
             })
@@ -34,6 +33,15 @@ export default class ManagersIndex extends Component {
         });
     }
 
+    onResetArray = () => {
+        baseAxios.get('store_managers/')
+            .then(response => {
+                this.setState({ store_managers: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    };
 
 
     render() {
@@ -44,23 +52,28 @@ export default class ManagersIndex extends Component {
         return (
             <div>
                 <h3 align="center">All Store Managers</h3>
-                <table className="table table-striped" style={{ marginTop: 20 }}>
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                            <th>Email</th>
-                            <th>Update</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead >
-                    <tbody>
-                        {this.tabRow()}
-                    </tbody>
-                </table >
+                <button type="button" className="btn btn-warning mt-3" onClick={this.onResetArray}>
+                    Refresh
+                </button>
+                <div class="table-responsive">
+                    <table className="table table-striped" style={{ marginTop: 20 }}>
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Email</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead >
+                        <tbody>
+                            {this.tabRow()}
+                        </tbody>
+                    </table >
 
+                </div>
             </div >
         );
     }

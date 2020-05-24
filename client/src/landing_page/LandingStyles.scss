@@ -55,6 +55,16 @@
   >* {
     padding: 0.25rem 0;
   }
+
+  h4 {
+    label {
+      color: wheat;
+      padding: 0.125rem .5rem;
+      border-radius: 15px;
+      font-size: 16px;
+      background-color: purple;
+    }
+  }
 }
 
 .btn-card {
@@ -88,6 +98,16 @@
   border: none;
   border-radius: 0.7rem;
   background-color: $cart-color;
+  float: right;
+}
+
+.btn-wishlist {
+  margin: 0.25rem;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.7rem;
+  background-color: orange;
   float: right;
 }
 
@@ -282,8 +302,8 @@
 #signup {
   padding-top: 6rem;
   height: 100vh;
-  background: rgb(184,143,0);
-  background: linear-gradient(90deg, rgba(184,143,0,1) 0%, rgba(255,127,0,1) 50%, rgba(184,143,0,1) 100%);
+  background: rgb(184, 143, 0);
+  background: linear-gradient(90deg, rgba(184, 143, 0, 1) 0%, rgba(255, 127, 0, 1) 50%, rgba(184, 143, 0, 1) 100%);
 
   #signup-content {
     padding-bottom: 2rem;
@@ -324,16 +344,18 @@
           width: 40%;
         }
 
-        @media (max-width: 768px){
+        @media (max-width: 768px) {
+
           >input[type="email"],
           >input[type="text"],
           >input[type="submit"] {
             width: 90%;
           }
+
           >textarea {
             width: 90%;
           }
-  
+
         }
       }
     }
@@ -349,8 +371,24 @@
   #navbar {
     .nav-container {
       flex-direction: column;
+
+      #navigation {
+        list-style: none;
+        display: flex;
+        align-self: center;
+
+        li {
+          margin: 5px;
+          padding: .5rem .25rem;
+          cursor: pointer;
+          border-radius: 5px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+      }
     }
   }
+
+
 
   /*specialItems componenet*/
   #specialItems {

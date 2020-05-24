@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import Axios from "axios";
 import Buttonv2 from "../../components/button";
-import backend_config from "../../config/backend_config";
+import baseAxios from "../../config/axios";
 
 class contactTableRow extends Component {
   constructor(props) {
@@ -9,8 +8,8 @@ class contactTableRow extends Component {
     this.delete = this.delete.bind(this);
   }
   delete() {
-    Axios.delete(
-      backend_config.baseURL + "contact/delete/" + this.props.obj._id
+    baseAxios.delete(
+      "contact/delete/" + this.props.obj._id
     )
       .then(() => {
         console.log("Deleted")

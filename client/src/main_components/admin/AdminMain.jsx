@@ -6,23 +6,25 @@ import dashboard from "./dashboard";
 import Contacts from "./contacts";
 import managerEdit from './manager/editManager';
 import categoryEdit from './category/editCategory';
-
+import { Link as MLink } from "@material-ui/core";
 import LogoImage from "../../components/logo_image";
-import { Button } from "@material-ui/core";
+import { Button, MenuItem } from "@material-ui/core";
 import ManagersTabPanel from "./manager/managersTab";
 import CategoriesTabPanel from "./category/categoriesTabPanel";
 import UserManager from "./users/ManageUsers";
+import test from "./Test/test";
+import { logOut } from "../../components/auth";
 
 
 class SideBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeArray: [0, 0, 0, 0, 0, 0], name: "" };
+    this.state = { activeArray: [0, 0, 0, 0, 0, 0,0], name: "" };
     this.clickHandler = this.clickHandler.bind(this);
   }
 
   clickHandler(id, name) {
-    var arr = [0, 0, 0, 0, 0, 0];
+    var arr = [0, 0, 0, 0, 0, 0,0];
     arr[id] = 1;
     this.setState({ activeArray: arr, name: name });
   }
@@ -84,7 +86,25 @@ class SideBar extends Component {
                   name="Contacts"
                 />
               </Link>
+              <Link to={"/dashboard/test"} style={{ textDecoration: "none" }}>
+                <NavBtn
+                  id={6}
+                  active={this.state.activeArray[6]}
+                  clickHandler={this.clickHandler}
+                  name="Stepper"
+                />
+              </Link>
 
+              <MLink
+                color="textPrimary"
+                href="/dashboard"
+                style={{ textDecoration: "none" }}
+                onClick={() => {
+                  logOut()
+                }}
+              >
+                <MenuItem>Logout</MenuItem>
+              </MLink>
             </div>
           </div>
           <div id="sideContent">
@@ -95,6 +115,7 @@ class SideBar extends Component {
               <Route path='/dashboard/edit/:id' component={managerEdit} />
               <Route path="/dashboard/categories" component={CategoriesTabPanel} />
               <Route path='/dashboard/editCategory/:id' component={categoryEdit} />
+              <Route path="/dashboard/test" component={test} />
               <Route path="/dashboard/contact" component={Contacts} />
             </Switch>
           </div>
