@@ -34,6 +34,15 @@ export default class ManagersIndex extends Component {
         });
     }
 
+    onResetArray = () => {
+        axios.get(backend_config.baseURL + 'store_managers/')
+            .then(response => {
+                this.setState({ store_managers: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    };
 
 
     render() {
@@ -44,23 +53,28 @@ export default class ManagersIndex extends Component {
         return (
             <div>
                 <h3 align="center">All Store Managers</h3>
-                <table className="table table-striped" style={{ marginTop: 20 }}>
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                            <th>Email</th>
-                            <th>Update</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead >
-                    <tbody>
-                        {this.tabRow()}
-                    </tbody>
-                </table >
+                <button type="button" className="btn btn-warning mt-3" onClick={this.onResetArray}>
+                    Refresh
+                </button>
+                <div class="table-responsive">
+                    <table className="table table-striped" style={{ marginTop: 20 }}>
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Email</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead >
+                        <tbody>
+                            {this.tabRow()}
+                        </tbody>
+                    </table >
 
+                </div>
             </div >
         );
     }

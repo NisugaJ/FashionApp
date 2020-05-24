@@ -60,18 +60,31 @@ export default class CreateManager extends Component {
             email: this.state.email
         };
 
+        if (obj.first_name === '' || obj.last_name === '' || obj.username === '' || obj.password === '' || obj.email === '') {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Fill all the fields',
+                showConfirmButton: false,
 
-        axios.post(backend_config.baseURL + 'store_managers/add', obj)
-            .then(
-                res => console.log(res.data),
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Added Manager Successfully',
-                    showConfirmButton: false,
+            })
 
-                })
-            );
+            console.log('error');
+        } else {
+            axios.post(backend_config.baseURL + 'store_managers/add', obj)
+                .then(
+                    res => console.log(res.data),
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Added Manager Successfully',
+                        showConfirmButton: false,
+
+                    })
+                );
+
+              
+        }
 
         this.setState({
             first_name: '',
@@ -81,6 +94,7 @@ export default class CreateManager extends Component {
             email: '',
             // access_token: '',
         })
+
     }
     render() {
         return (

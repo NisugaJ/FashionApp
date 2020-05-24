@@ -57,7 +57,7 @@ export default class Edit extends Component {
             .then(res => console.log(res.data));
 
         //push after the update to view page
-        this.props.history.push('/dashboard/viewCategory');
+        this.props.history.push('/dashboard/categories');
     }
 
 

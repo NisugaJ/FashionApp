@@ -39,23 +39,39 @@ export default class CreateCategory extends Component {
 
         //    apis.addAdmin(obj);
 
-        axios.post(backend_config.baseURL + 'categories/add', obj)
-            .then(
-                res => console.log(res.data),
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Added Cateory Successfully',
-                    showConfirmButton: false,
+        if (obj.name === '' || obj.description === '') {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Fill all the fields',
+                showConfirmButton: false,
 
-                })
-            );
+            })
 
+            console.log('error');
+        } else {
+            axios.post(backend_config.baseURL + 'categories/add', obj)
+                .then(
+                    res => console.log(res.data),
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Added Cateory Successfully',
+                        showConfirmButton: false,
+
+                    })
+                );
+
+
+          
+        }
 
         this.setState({
             name: '',
             description: ''
         })
+
+
     }
     render() {
         return (
