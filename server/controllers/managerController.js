@@ -113,5 +113,5 @@ module.exports = {
     getEditDetails,
     updateManager,
     deleteManager
-    
+
 };
