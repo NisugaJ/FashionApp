@@ -33,7 +33,7 @@ export default class IndexCategories extends Component {
     }
 
     onResetArray = () => {
-        axios.get(backend_config.baseURL + 'categories')
+        baseAxios.get('categories')
             .then(response => {
                 this.setState({ categories: response.data });
             })

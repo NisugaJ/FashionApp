@@ -7,13 +7,13 @@ import {
 
 const INITIAL_STATE = [
   {
-    id: 4,
-    img: "/images/3.jpg",
-    title: "bags",
-    category: "clothes",
+    _id: 4,
+    image_path: "/images/3.jpg",
+    name: "bags",
+    category_id: "clothes",
     owner: "Shimran",
     price: 100,
-    units: 1,
+    qty: 1,
   },
 ];
 
@@ -23,14 +23,14 @@ const cartReducer = (state = INITIAL_STATE, action = {}) => {
 
   switch (action.type) {
     case ADD_TO_CART:
-      const existingProductIndex = cart.findIndex((p) => p.id === product.id);
+      const existingProductIndex = cart.findIndex((p) => p._id === product._id);
       if (existingProductIndex >= 0) {
         const cartProducts = cart.slice();
         const existingProducts = cartProducts[existingProductIndex];
 
         const updatedUnitsProduct = {
           ...existingProducts,
-          units: existingProducts.units + product.units,
+          qty: existingProducts.qty + product.qty,
         };
 
         cartProducts[existingProductIndex] = updatedUnitsProduct;
@@ -39,17 +39,17 @@ const cartReducer = (state = INITIAL_STATE, action = {}) => {
         return [...cart, product];
       }
     case DEL_FROM_CART:
-      const filteredItems = cart.filter((i) => i.id !== product.id);
+      const filteredItems = cart.filter((i) => i._id !== product._id);
       return filteredItems;
     case PLUS_QTY:
-      const maxProductIndex = cart.findIndex((p) => p.id === product.id);
+      const maxProductIndex = cart.findIndex((p) => p._id === product._id);
       if (maxProductIndex >= 0) {
         const cartProducts = cart.slice();
         const existingProducts = cartProducts[maxProductIndex];
 
         const updatedUnitsProduct = {
           ...existingProducts,
-          units: existingProducts.units + 1,
+          qty: existingProducts.qty + 1,
         };
 
         cartProducts[maxProductIndex] = updatedUnitsProduct;
@@ -57,14 +57,14 @@ const cartReducer = (state = INITIAL_STATE, action = {}) => {
       }
       break;
     case MIN_QTY:
-      const minProductIndex = cart.findIndex((p) => p.id === product.id);
+      const minProductIndex = cart.findIndex((p) => p._id === product._id);
       if (minProductIndex >= 0) {
         const cartProducts = cart.slice();
         const existingProducts = cartProducts[minProductIndex];
 
         const updatedUnitsProduct = {
           ...existingProducts,
-          units: existingProducts.units - 1,
+          qty: existingProducts.qty - 1,
         };
 
         cartProducts[minProductIndex] = updatedUnitsProduct;

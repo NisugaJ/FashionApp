@@ -62,10 +62,22 @@ const getUserData = () => {
   }
 }
 
+const getUserId = () => {
+  const user = JSON.parse(sessionStorage.getItem("user") || null)
+  console.log(user);
+
+  if (user) {
+    var uData = user.user
+    return uData._id
+  }
+  return null
+}
+
 export {
   isLogged,
   logOut,
   getLoggedInUserType,
   getAccessToken,
-  getUserData
+  getUserData,
+  getUserId
 }
