@@ -2,7 +2,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const cors = require('cors')
 const app = express()
-const apiPort = 3000
+const apiPort = 9000
 const db = require('./db')
 
 const userRoutes = require('./routes/user.route')
@@ -12,7 +12,7 @@ const productRoutes = require("./routes/product.route");
 const authRoutes = require("./routes/auth.route");
 const managerRoutes = require("./routes/manager.route");
 const categoryRoutes = require("./routes/category.route");
-
+const path = require('path');
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -25,7 +25,8 @@ app.get('/', (req, res) => {
 })
 
 //For Accessing Static Resources
-app.use(express.static('./public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/user', userRoutes)
 app.use("/contact", contactRoutes);
