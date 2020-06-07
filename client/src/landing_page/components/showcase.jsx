@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "@material-ui/core";
-
+import { Link } from "react-router-dom";
+import { Link as MLink } from "@material-ui/core"
 //the main content in the home page
 export const showcase = () => {
   return (
@@ -18,11 +18,14 @@ export const showcase = () => {
             <i style={{ fontSize: "4rem" }}>Outstanding</i>
           </h1>
           <br />
-          <Link className="btn-primary" href="#popular_items">
+          <MLink className="btn-primary" href="#popular_items" >
             <i className="fas fa-shopping-bag"></i> Let's Shop
-          </Link>
+          </MLink>
           <br />
-          <Link className="btn-primary" href="/landing/signup">
+
+          <Link className="btn-primary"
+            to={`landing/signup`}
+          >
             Signup Today
           </Link>
         </div>

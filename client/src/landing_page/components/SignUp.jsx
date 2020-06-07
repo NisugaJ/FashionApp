@@ -24,7 +24,7 @@ export const RegistrationPage = () => {
 
         baseAxios.post("user/create", user.data)
             .then((response) => {
-                if (response.ok) {
+                if (response.status === 200) {
                     console.log("Submitted")
                     setUser({ data: initUserData })
                     sweetAlert.fire({
@@ -33,6 +33,12 @@ export const RegistrationPage = () => {
                         title: 'Registered Successfully',
                     })
                     window.location.pathname = "/dashboard"
+                } else {
+                    sweetAlert.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Registration Failed',
+                    })
                 }
 
             }).catch((error) => {
